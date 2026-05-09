@@ -11,7 +11,6 @@ variables so the same code runs against MinIO locally and S3 in prod.
 """
 
 import os
-from typing import Optional
 
 from pyflink.common import Types
 from pyflink.datastream.connectors.iceberg import (
@@ -19,8 +18,6 @@ from pyflink.datastream.connectors.iceberg import (
     CatalogLoader,
     TableLoader,
 )
-from pyflink.table import TableEnvironment, EnvironmentSettings
-from pyflink.table.types import DataTypes
 
 
 # ---------------------------------------------------------------------------

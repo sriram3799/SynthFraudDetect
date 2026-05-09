@@ -83,13 +83,16 @@ class LocationJumpFunction(KeyedProcessFunction):
 
                 # Convert Row to plain dict before ** unpacking (Row is not a mapping).
                 event_dict = event.as_dict() if hasattr(event, "as_dict") else dict(event)
+                # ctx.timestamp() is event-time of the current element, not wall-clock;
+                # use TimerService.current_processing_time() for real latency.
+                processing_time = ctx.timer_service().current_processing_time()
                 candidate = {
                     **event_dict,
                     "fraud_flags": ["LOCATION_JUMP"],
                     "is_fraud": True,
                     "risk_score": risk_score,
-                    "processing_time_ms": ctx.timestamp() - event["event_time"],
-                    "flink_processing_timestamp": ctx.timestamp(),
+                    "processing_time_ms": processing_time - event["event_time"],
+                    "flink_processing_timestamp": processing_time,
                 }
                 yield json.dumps(candidate)
 

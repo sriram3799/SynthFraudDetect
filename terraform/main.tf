@@ -13,10 +13,13 @@ terraform {
   #   aws s3api create-bucket --bucket <state_bucket> --region <region>
   #   aws s3api put-bucket-versioning --bucket <state_bucket> \
   #     --versioning-configuration Status=Enabled
+  #
+  # Backend blocks cannot reference variables — supply bucket/region at init:
+  #   terraform init \
+  #     -backend-config="bucket=<state_bucket>" \
+  #     -backend-config="region=<region>"
   backend "s3" {
-    bucket = var.terraform_state_bucket   # supplied via terraform.tfvars (gitignored)
-    key    = "sentinelstream/terraform.tfstate"
-    region = var.aws_region
+    key     = "sentinelstream/terraform.tfstate"
     encrypt = true
   }
 }

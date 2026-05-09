@@ -1,7 +1,7 @@
 """
 Flink ValueState serialisation for LastLocationState.
 
-Uses struct.pack binary encoding (10 bytes) instead of JSON or pickle to
+Uses struct.pack binary encoding (24 bytes) instead of JSON or pickle to
 minimise per-event serialisation overhead at 25K tps on the RocksDB backend.
 
 Layout: [latitude: double (8 bytes)] [longitude: double (8 bytes)] [event_time_ms: long long (8 bytes)]
