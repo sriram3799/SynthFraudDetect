@@ -29,9 +29,7 @@ from pyflink.datastream.connectors.kafka import (
 )
 from pyflink.datastream.formats.json import JsonRowDeserializationSchema
 from pyflink.datastream.window import SlidingEventTimeWindows
-from pyflink.datastream.functions import ProcessWindowFunction, FilterFunction
-from pyflink.common.watermark_strategy import WatermarkStrategy, TimestampAssigner
-from pyflink.common import Duration
+from pyflink.datastream.functions import ProcessWindowFunction
 
 from watermark_strategy import sentinel_watermark_strategy
 from latency_sidecar import LatencySidecarFunction
