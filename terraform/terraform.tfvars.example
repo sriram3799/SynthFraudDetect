@@ -1,0 +1,10 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is gitignored — never commit it.
+
+aws_region             = "us-east-1"
+project_name           = "sentinelstream"
+environment            = "dev"
+owner                  = "your-name-or-team"
+iceberg_bucket_name    = "sentinelstream-iceberg-dev-YOURUNIQUEID"
+terraform_state_bucket = "sentinelstream-tfstate-YOURUNIQUEID"
+admin_cidr             = "YOUR.OFFICE.IP.RANGE/32"

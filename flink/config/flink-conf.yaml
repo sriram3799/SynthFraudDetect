@@ -1,0 +1,27 @@
+# Flink job-level configuration.
+# Mirrors docker/flink-conf/flink-conf.yaml — keep in sync if you change one.
+
+jobmanager.rpc.address: jobmanager
+jobmanager.rpc.port: 6123
+jobmanager.memory.process.size: 1600m
+
+taskmanager.memory.process.size: 6144m
+taskmanager.numberOfTaskSlots: 4
+
+parallelism.default: 4
+
+state.backend: rocksdb
+state.backend.incremental: true
+state.checkpoints.dir: file:///tmp/flink-checkpoints
+state.savepoints.dir: file:///tmp/flink-savepoints
+
+execution.checkpointing.interval: 10000
+execution.checkpointing.mode: EXACTLY_ONCE
+execution.checkpointing.timeout: 60000
+execution.checkpointing.min-pause: 5000
+execution.checkpointing.max-concurrent-checkpoints: 1
+
+pipeline.operator-chaining: true
+
+rest.port: 8081
+web.submit.enable: true

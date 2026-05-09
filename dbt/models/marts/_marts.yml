@@ -1,0 +1,109 @@
+version: 2
+
+models:
+  - name: daily_fraud_volume
+    description: >
+      Daily fraud volume and fraud rate over the last lookback_days days.
+      Materialised as a table for sub-second DuckDB query performance.
+      Refreshed on each dbt run.
+    columns:
+      - name: day
+        description: Calendar day (date_trunc day of event_time).
+        tests:
+          - not_null
+          - unique
+      - name: total_transactions
+        description: Total transaction count for the day (fraud + legitimate).
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+      - name: fraud_count
+        description: Count of is_fraud=true transactions for the day.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+      - name: legitimate_count
+        description: Count of is_fraud=false transactions for the day.
+        tests: [not_null]
+      - name: fraud_rate_pct
+        description: fraud_count / total_transactions * 100. NULL-safe (returns NULL if no transactions).
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.0
+              max_value: 100.0
+
+  - name: top_attacked_merchants
+    description: >
+      Top 100 merchants by fraud hit count over the last lookback_days days.
+      Includes per-pattern breakdown (VELOCITY_BREACH vs LOCATION_JUMP).
+    columns:
+      - name: merchant_id
+        description: Opaque merchant identifier.
+        tests:
+          - not_null
+          - unique
+      - name: fraud_hits
+        description: Count of distinct fraud transactions targeting this merchant.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+      - name: total_fraud_amount_usd
+        description: Sum of fraudulent transaction amounts (USD).
+        tests: [not_null]
+      - name: avg_fraud_amount_usd
+        description: Average fraudulent transaction amount (USD).
+        tests: [not_null]
+      - name: velocity_breach_count
+        description: Fraud hits attributed to VELOCITY_BREACH pattern.
+        tests: [not_null]
+      - name: location_jump_count
+        description: Fraud hits attributed to LOCATION_JUMP pattern.
+        tests: [not_null]
+      - name: first_fraud_seen
+        description: Earliest fraud event timestamp for this merchant in the window.
+        tests: [not_null]
+      - name: last_fraud_seen
+        description: Most recent fraud event timestamp for this merchant in the window.
+        tests: [not_null]
+
+  - name: velocity_breach_users
+    description: >
+      Users who triggered VELOCITY_BREACH in the last 24 hours, ranked by
+      breach count. Primary analyst watchlist for account review or blocking.
+    columns:
+      - name: user_id
+        description: Opaque user identifier.
+        tests:
+          - not_null
+          - unique
+      - name: breach_event_count
+        description: Number of VELOCITY_BREACH events in the last 24 hours for this user.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+      - name: total_flagged_amount_usd
+        description: Total USD value of velocity-breached transactions in the window.
+        tests: [not_null]
+      - name: max_risk_score
+        description: Highest risk_score assigned to any breach event for this user.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.0
+              max_value: 1.0
+      - name: distinct_ips
+        description: Number of unique IP addresses observed across breach events.
+        tests: [not_null]
+      - name: distinct_devices
+        description: Number of unique device fingerprints observed across breach events.
+        tests: [not_null]
+      - name: first_breach
+        description: Timestamp of earliest velocity breach in the 24-hour window.
+        tests: [not_null]
+      - name: last_breach
+        description: Timestamp of most recent velocity breach. Use to assess ongoing activity.
+        tests: [not_null]

@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "enriched_event",
+  "title": "EnrichedEvent",
+  "description": "Schema for a fraud-enriched transaction event emitted by Flink after pattern detection. Extends TransactionEvent with risk metadata. This is the record written to Apache Iceberg.",
+  "type": "object",
+  "required": [
+    "transaction_id",
+    "user_id",
+    "merchant_id",
+    "amount_usd",
+    "currency",
+    "event_time",
+    "ip_address",
+    "latitude",
+    "longitude",
+    "device_fingerprint",
+    "session_id",
+    "generator_seed",
+    "sequence_number",
+    "risk_score",
+    "fraud_flags",
+    "is_fraud",
+    "processing_time_ms",
+    "flink_processing_timestamp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Inherited from TransactionEvent. Iceberg primary key."
+    },
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "merchant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "amount_usd": {
+      "type": "number",
+      "minimum": 0.01
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3
+    },
+    "event_time": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Inherited epoch ms. Iceberg partition key (HOUR granularity for transactions, DAY for fraud_alerts)."
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90.0,
+      "maximum": 90.0
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180.0,
+      "maximum": 180.0
+    },
+    "device_fingerprint": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generator_seed": {
+      "type": "integer"
+    },
+    "sequence_number": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "risk_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Composite fraud risk score in [0, 1] computed by Flink. 0 = no risk, 1 = maximum risk. For LOCATION_JUMP, proportional to computed travel speed (km/h). For VELOCITY_BREACH, proportional to excess transaction count."
+    },
+    "fraud_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["VELOCITY_BREACH", "LOCATION_JUMP"]
+      },
+      "description": "List of fraud patterns triggered for this transaction. Empty array for legitimate transactions."
+    },
+    "is_fraud": {
+      "type": "boolean",
+      "description": "True if fraud_flags is non-empty. Denormalized for efficient Iceberg partition filtering."
+    },
+    "processing_time_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Wall-clock milliseconds from Flink event ingestion to enriched record emission. Used to verify the 80ms p99 latency invariant."
+    },
+    "flink_processing_timestamp": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix epoch milliseconds at which Flink emitted this enriched record. Used as the dbt source loaded_at_field for freshness checks."
+    }
+  }
+}

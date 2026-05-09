@@ -1,0 +1,78 @@
+# SentinelStream custom Flink image with PyFlink support.
+#
+# Extends flink:1.18-scala_2.12 with Python + apache-flink.
+#
+# Multi-stage build to avoid installing the full openjdk-11-jdk-headless package
+# (~150 MB) just to get jni.h. We copy only the include/ directory (~500 KB)
+# from a matching Eclipse Temurin JDK image instead.
+#
+# Stage 1 (jdk-headers): source of JNI headers — never shipped in the final image.
+# Stage 2: actual Flink image with PyFlink.
+#
+# All three cluster roles (jobmanager, taskmanager, submitter) use this image
+# so the Python environment is identical everywhere — required for pyflink jobs.
+
+# ── Stage 1: grab JDK headers only ──────────────────────────────────────────
+FROM eclipse-temurin:11-jdk-jammy AS jdk-headers
+# Nothing to run — we just need the filesystem at /opt/java/openjdk/include.
+
+# ── Stage 2: Flink + PyFlink ─────────────────────────────────────────────────
+FROM flink:1.18-scala_2.12
+
+# Copy JNI headers from the JDK stage (~500 KB, no apt download needed).
+COPY --from=jdk-headers /opt/java/openjdk/include /opt/java/openjdk/include
+
+# Install Python + build tools, compile pemja, then purge build-only packages
+# so they don't bloat the final image layer.
+RUN apt-get update -qq --allow-insecure-repositories \
+    && apt-get install -y --no-install-recommends --allow-unauthenticated \
+        python3 \
+        python3-pip \
+        python3-dev \
+        build-essential \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
+    \
+    # Build and install PyFlink (compiles pemja C extension here).
+    && pip3 install --no-cache-dir apache-flink==1.18.0 boto3 \
+    \
+    # Purge build-only packages to keep the layer lean.
+    && apt-get purge -y --allow-change-held-packages \
+        python3-dev \
+        build-essential \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
+
+# Remove the bundled PyFlink stub shipped with the Flink distribution.
+# It is older/incomplete and wins over the pip-installed 1.18.0 when flink run
+# sets PYTHONPATH.  Deleting it makes Python fall through to site-packages.
+RUN rm -f /opt/flink/opt/python/pyflink.zip
+
+# Enable the built-in S3 plugin (needed for Flink checkpoints + Iceberg data files on MinIO).
+RUN mkdir -p /opt/flink/plugins/s3-fs-hadoop \
+    && cp /opt/flink/opt/flink-s3-fs-hadoop-*.jar /opt/flink/plugins/s3-fs-hadoop/
+
+# Download connector + Iceberg + Hadoop JARs into /opt/flink/lib.
+#
+# flink-sql-connector-kafka: fat JAR with Kafka source/sink for both
+#   DataStream API and Table/SQL API (includes kafka-clients shaded).
+#   NOT bundled in the flink:1.18 base image — must be fetched explicitly.
+# iceberg-flink-runtime: Table API catalog factory + Iceberg Flink connector.
+# iceberg-aws-bundle:    shaded AWS SDK v2 used by S3FileIO.
+# hadoop-client-runtime: self-contained shaded Hadoop client; provides
+#                        org.apache.hadoop.conf.Configuration which the Iceberg
+#                        Hadoop catalog requires at runtime.
+RUN curl -fsSL -o /opt/flink/lib/flink-sql-connector-kafka-3.1.0-1.18.jar \
+      https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.1.0-1.18/flink-sql-connector-kafka-3.1.0-1.18.jar \
+    && curl -fsSL -o /opt/flink/lib/iceberg-flink-runtime-1.18-1.5.2.jar \
+      https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-flink-runtime-1.18/1.5.2/iceberg-flink-runtime-1.18-1.5.2.jar \
+    && curl -fsSL -o /opt/flink/lib/iceberg-aws-bundle-1.5.2.jar \
+      https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-aws-bundle/1.5.2/iceberg-aws-bundle-1.5.2.jar \
+    && curl -fsSL -o /opt/flink/lib/hadoop-client-api-3.3.6.jar \
+      https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-client-api/3.3.6/hadoop-client-api-3.3.6.jar \
+    && curl -fsSL -o /opt/flink/lib/hadoop-client-runtime-3.3.6.jar \
+      https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-client-runtime/3.3.6/hadoop-client-runtime-3.3.6.jar
+
+# Verify the compiled extension loads correctly.
+RUN python3 -c "from pyflink.datastream import StreamExecutionEnvironment; \
+    v = __import__('pyflink.version', fromlist=['__version__']).__version__; \
+    print('pyflink OK:', v)"

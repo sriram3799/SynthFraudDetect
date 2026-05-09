@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "transaction_event",
+  "title": "TransactionEvent",
+  "description": "Canonical schema for a raw synthetic e-commerce transaction event produced by the SentinelStream generator.",
+  "type": "object",
+  "required": [
+    "transaction_id",
+    "user_id",
+    "merchant_id",
+    "amount_usd",
+    "currency",
+    "event_time",
+    "ip_address",
+    "latitude",
+    "longitude",
+    "device_fingerprint",
+    "session_id",
+    "generator_seed",
+    "sequence_number"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID v4. Globally unique per transaction. Used as the Iceberg primary key."
+    },
+    "user_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable opaque user identifier. Flink keys all stateful operations on this field."
+    },
+    "merchant_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Opaque merchant identifier."
+    },
+    "amount_usd": {
+      "type": "number",
+      "minimum": 0.01,
+      "description": "Transaction amount in USD. Drawn from PaySim1-calibrated distributions."
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3,
+      "description": "ISO 4217 currency code (e.g. USD, EUR, GBP)."
+    },
+    "event_time": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Unix epoch milliseconds at which the transaction was generated. Used as the Iceberg partition key."
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "IPv4 or IPv6 address of the originating request."
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90.0,
+      "maximum": 90.0,
+      "description": "Geographic latitude of the transaction origin. Used for LOCATION_JUMP detection."
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180.0,
+      "maximum": 180.0,
+      "description": "Geographic longitude of the transaction origin. Used for LOCATION_JUMP detection."
+    },
+    "device_fingerprint": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Opaque hash identifying the originating device."
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Session identifier grouping related transactions."
+    },
+    "generator_seed": {
+      "type": "integer",
+      "description": "Master RNG seed used by the producer process that emitted this event. Enables deterministic replay."
+    },
+    "sequence_number": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monotonically increasing counter within a single producer run. Together with generator_seed, uniquely identifies an event for deterministic regression testing."
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "transaction_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "user_id": "user_00042",
+  "merchant_id": "merchant_0017",
+  "amount_usd": 134.99,
+  "currency": "USD",
+  "event_time": 1746518400000,
+  "ip_address": "203.0.113.47",
+  "latitude": 37.7749,
+  "longitude": -122.4194,
+  "device_fingerprint": "fp_8a3f2c1e9b",
+  "session_id": "sess_7d4e9a12",
+  "generator_seed": 42,
+  "sequence_number": 0
+}

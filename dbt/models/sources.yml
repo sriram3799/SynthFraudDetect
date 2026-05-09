@@ -1,0 +1,111 @@
+version: 2
+
+sources:
+  - name: sentinel_raw
+    description: >
+      Raw Iceberg tables written by the Flink detection jobs.
+      Both tables live in the same S3 warehouse; DuckDB reads them
+      via the iceberg_scan() table function.
+    meta:
+      warehouse: "{{ env_var('ICEBERG_WAREHOUSE', 's3://sentinel-dev/iceberg') }}"
+
+    tables:
+      - name: transactions
+        description: >
+          All enriched transaction events (fraud and legitimate) written by
+          the Flink Iceberg sink. Partitioned by HOUR(event_time).
+          ~25,000 events/sec at peak load.
+        loaded_at_field: flink_processing_timestamp
+        meta:
+          external_location: "iceberg_scan('s3://sentinel-dev/iceberg/transactions/')"
+        freshness:
+          warn_after: {count: 5, period: minute}
+          error_after: {count: 30, period: minute}
+        columns:
+          - name: transaction_id
+            description: UUID v4. Globally unique per transaction. Iceberg primary key.
+            tests:
+              - not_null
+              - unique
+          - name: user_id
+            description: Stable opaque user identifier. Flink keys all stateful operations on this field.
+            tests: [not_null]
+          - name: merchant_id
+            description: Opaque merchant identifier.
+            tests: [not_null]
+          - name: amount_usd
+            description: Transaction amount in USD. Log-normal distribution calibrated to PaySim1.
+            tests: [not_null]
+          - name: currency
+            description: ISO 4217 currency code (3 chars).
+            tests: [not_null]
+          - name: event_time
+            description: Unix epoch milliseconds. Iceberg partition key (HOUR granularity).
+            tests: [not_null]
+          - name: ip_address
+            description: IPv4/IPv6 address of the originating request.
+            tests: [not_null]
+          - name: latitude
+            description: Geographic latitude [-90, 90]. Used for LOCATION_JUMP detection.
+            tests: [not_null]
+          - name: longitude
+            description: Geographic longitude [-180, 180]. Used for LOCATION_JUMP detection.
+            tests: [not_null]
+          - name: device_fingerprint
+            description: Opaque hash identifying the originating device.
+            tests: [not_null]
+          - name: session_id
+            description: Session identifier grouping related transactions.
+            tests: [not_null]
+          - name: generator_seed
+            description: Master RNG seed used by the producer process. Enables deterministic replay.
+            tests: [not_null]
+          - name: sequence_number
+            description: Monotonically increasing counter within a single producer run.
+            tests: [not_null]
+          - name: risk_score
+            description: Composite fraud risk score in [0, 1]. 0 = no risk, 1 = maximum risk.
+            tests: [not_null]
+          - name: fraud_flags
+            description: Array of fraud pattern IDs triggered. Empty for legitimate transactions.
+            tests: [not_null]
+          - name: is_fraud
+            description: True if fraud_flags is non-empty. Denormalised for partition filtering.
+            tests: [not_null]
+          - name: processing_time_ms
+            description: Wall-clock ms from Flink ingestion to enriched record emission.
+            tests: [not_null]
+          - name: flink_processing_timestamp
+            description: Epoch ms when Flink emitted this record. dbt source loaded_at_field.
+            tests: [not_null]
+
+      - name: fraud_alerts
+        description: >
+          Fraud-only subset of transactions (is_fraud = TRUE), written to a
+          separate Iceberg table for fast forensic queries. Partitioned by
+          DAY(event_time). 30-day snapshot retention for audit trail.
+        loaded_at_field: flink_processing_timestamp
+        meta:
+          external_location: "iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')"
+        freshness:
+          warn_after: {count: 10, period: minute}
+          error_after: {count: 60, period: minute}
+        columns:
+          - name: transaction_id
+            description: UUID v4. Matches the corresponding row in transactions.
+            tests:
+              - not_null
+              - unique
+          - name: user_id
+            tests: [not_null]
+          - name: event_time
+            description: Epoch ms. Iceberg partition key (DAY granularity).
+            tests: [not_null]
+          - name: fraud_flags
+            description: Non-empty array — all rows in this table are fraud.
+            tests: [not_null]
+          - name: risk_score
+            tests: [not_null]
+          - name: is_fraud
+            description: Always TRUE in this table.
+            tests: [not_null]

@@ -1,0 +1,130 @@
+version: 2
+
+models:
+  - name: stg_transactions
+    description: >
+      Cleaned and typed enriched transaction events (fraud + legitimate).
+      One row per transaction. event_time cast to TIMESTAMPTZ.
+      Source: sentinel_raw.transactions (Iceberg, HOUR-partitioned).
+    columns:
+      - name: transaction_id
+        description: UUID v4. Globally unique. Primary key for this model.
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        description: Stable opaque user identifier.
+        tests: [not_null]
+      - name: merchant_id
+        description: Opaque merchant identifier.
+        tests: [not_null]
+      - name: amount_usd
+        description: Transaction amount in USD.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01
+              max_value: 100000
+      - name: currency
+        description: ISO 4217 currency code (upper-cased, 3 chars).
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+              value: 3
+      - name: event_time
+        description: Transaction timestamp (TIMESTAMPTZ).
+        tests: [not_null]
+      - name: flink_processing_timestamp
+        description: Timestamp when Flink emitted the enriched record (TIMESTAMPTZ).
+        tests: [not_null]
+      - name: processing_time_ms
+        description: Flink processing latency in milliseconds.
+        tests: [not_null]
+      - name: ip_address
+        description: Source IP address.
+        tests: [not_null]
+      - name: latitude
+        description: Geographic latitude of transaction origin.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -90.0
+              max_value: 90.0
+      - name: longitude
+        description: Geographic longitude of transaction origin.
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -180.0
+              max_value: 180.0
+      - name: device_fingerprint
+        description: Opaque device hash.
+        tests: [not_null]
+      - name: session_id
+        description: Session grouping related transactions.
+        tests: [not_null]
+      - name: risk_score
+        description: Fraud risk score in [0, 1].
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.0
+              max_value: 1.0
+      - name: fraud_flags
+        description: Array of fraud pattern IDs. Empty for legitimate transactions.
+        tests: [not_null]
+      - name: is_fraud
+        description: True when fraud_flags is non-empty.
+        tests: [not_null]
+      - name: generator_seed
+        description: RNG seed used by the producer that created this event.
+        tests: [not_null]
+      - name: sequence_number
+        description: Monotonically increasing counter within a producer run.
+        tests: [not_null]
+
+  - name: stg_fraud_alerts
+    description: >
+      Fraud-only events exploded to one row per fraud flag (UNNEST).
+      A single transaction that triggers both VELOCITY_BREACH and LOCATION_JUMP
+      will appear as two rows here, one per flag.
+      Source: sentinel_raw.fraud_alerts (Iceberg, DAY-partitioned).
+    columns:
+      - name: transaction_id
+        description: UUID v4. Not unique in this model (one row per flag).
+        tests: [not_null]
+      - name: user_id
+        tests: [not_null]
+      - name: merchant_id
+        tests: [not_null]
+      - name: amount_usd
+        tests: [not_null]
+      - name: currency
+        tests: [not_null]
+      - name: event_time
+        tests: [not_null]
+      - name: flink_processing_timestamp
+        tests: [not_null]
+      - name: ip_address
+        tests: [not_null]
+      - name: latitude
+        tests: [not_null]
+      - name: longitude
+        tests: [not_null]
+      - name: risk_score
+        tests: [not_null]
+      - name: fraud_flags
+        description: Original array before unnesting.
+        tests: [not_null]
+      - name: is_fraud
+        description: Always TRUE in this model.
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true]
+      - name: fraud_flag
+        description: Individual flag value from the unnested array (VELOCITY_BREACH or LOCATION_JUMP).
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["VELOCITY_BREACH", "LOCATION_JUMP"]

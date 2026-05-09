@@ -1,0 +1,33 @@
+name: sentinel_analytics
+version: "1.0.0"
+config-version: 2
+
+profile: sentinel
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  sentinel_analytics:
+    staging:
+      +materialized: table        # pay the Iceberg scan + unnest cost once per dbt run
+      +schema: staging
+    marts:
+      +materialized: table        # pre-computed for < 1s DuckDB query invariant
+      +schema: marts
+
+vars:
+  # Lookback window for mart models — Iceberg partition pruning keeps queries fast
+  lookback_days: 7
+  # Velocity breach threshold — must match flink/jobs/velocity_check.py
+  velocity_threshold: 5
+  velocity_window_sec: 60

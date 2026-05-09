@@ -1,0 +1,48 @@
+# Flink cluster configuration — shared by JobManager and TaskManagers.
+# This file is bind-mounted into containers at /opt/flink/conf/flink-conf.yaml.
+
+jobmanager.rpc.address: jobmanager
+jobmanager.rpc.port: 6123
+jobmanager.bind-host: 0.0.0.0
+jobmanager.memory.process.size: 1600m
+
+taskmanager.bind-host: 0.0.0.0
+taskmanager.host: taskmanager
+taskmanager.memory.process.size: 6144m
+taskmanager.numberOfTaskSlots: 4
+
+parallelism.default: 4
+
+# RocksDB state backend — mandatory at 25K tps to avoid heap OOM.
+# Must be set before any job is submitted; cannot be changed per-job after cluster start.
+state.backend: rocksdb
+state.backend.incremental: true
+state.checkpoints.dir: file:///tmp/flink-checkpoints
+state.savepoints.dir: file:///tmp/flink-savepoints
+
+# Exactly-once checkpointing — enforces the ACID write invariant.
+execution.checkpointing.interval: 10000        # 10s
+execution.checkpointing.mode: EXACTLY_ONCE
+execution.checkpointing.timeout: 60000         # 60s
+execution.checkpointing.min-pause: 5000        # 5s between checkpoints
+execution.checkpointing.max-concurrent-checkpoints: 1
+
+# Operator chaining — reduces serialization hops within a Flink pipeline,
+# contributing to the 80ms p99 latency budget.
+pipeline.operator-chaining: true
+
+# Network and buffer tuning for high-throughput (25K tps target).
+taskmanager.network.memory.fraction: 0.2
+taskmanager.network.memory.min: 256mb
+taskmanager.network.memory.max: 1gb
+
+rest.bind-address: 0.0.0.0
+rest.address: jobmanager
+rest.port: 8081
+
+web.submit.enable: true
+
+env.java.opts.taskmanager: >
+  -XX:+UseG1GC
+  -XX:MaxGCPauseMillis=20
+  -XX:InitiatingHeapOccupancyPercent=35

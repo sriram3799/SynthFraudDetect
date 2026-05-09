@@ -1,0 +1,1692 @@
+[0m06:54:59.142156 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104d53d10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1050d57f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1050d5970>]}
+
+
+============================== 06:54:59.144801 | 4fbee3a1-6abe-4552-8190-f7870a6cadef ==============================
+[0m06:54:59.144801 [info ] [MainThread]: Running with dbt=1.9.2
+[0m06:54:59.145055 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'dbt/', 'debug': 'False', 'version_check': 'True', 'log_path': 'dbt/logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt debug --profiles-dir dbt/ --project-dir dbt/', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m06:54:59.153759 [info ] [MainThread]: dbt version: 1.9.2
+[0m06:54:59.153975 [info ] [MainThread]: python version: 3.12.7
+[0m06:54:59.154080 [info ] [MainThread]: python path: /opt/anaconda3/bin/python
+[0m06:54:59.154172 [info ] [MainThread]: os info: macOS-26.3.1-arm64-arm-64bit
+[0m06:54:59.256249 [info ] [MainThread]: Using profiles dir at dbt/
+[0m06:54:59.256479 [info ] [MainThread]: Using profiles.yml file at dbt/profiles.yml
+[0m06:54:59.256587 [info ] [MainThread]: Using dbt_project.yml file at dbt/dbt_project.yml
+[0m06:54:59.257128 [info ] [MainThread]: adapter type: duckdb
+[0m06:54:59.257239 [info ] [MainThread]: adapter version: 1.9.1
+[0m06:54:59.298222 [info ] [MainThread]: Configuration:
+[0m06:54:59.298442 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m06:54:59.298548 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m06:54:59.298641 [info ] [MainThread]: Required dependencies:
+[0m06:54:59.298794 [debug] [MainThread]: Executing "git --help"
+[0m06:54:59.310060 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m06:54:59.310809 [debug] [MainThread]: STDERR: "b''"
+[0m06:54:59.310990 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m06:54:59.311141 [info ] [MainThread]: Connection:
+[0m06:54:59.311275 [info ] [MainThread]:   database: memory
+[0m06:54:59.311374 [info ] [MainThread]:   schema: main
+[0m06:54:59.311457 [info ] [MainThread]:   path: :memory:
+[0m06:54:59.311552 [info ] [MainThread]:   config_options: None
+[0m06:54:59.311638 [info ] [MainThread]:   extensions: ['iceberg', 'httpfs']
+[0m06:54:59.311725 [info ] [MainThread]:   settings: {'s3_endpoint': 'localhost:9000', 's3_access_key_id': 'minioadmin', 's3_secret_access_key': 'minioadmin', 's3_use_ssl': 'false', 's3_url_style': 'path'}
+[0m06:54:59.311812 [info ] [MainThread]:   external_root: .
+[0m06:54:59.311896 [info ] [MainThread]:   use_credential_provider: None
+[0m06:54:59.311984 [info ] [MainThread]:   attach: None
+[0m06:54:59.312064 [info ] [MainThread]:   filesystems: None
+[0m06:54:59.312142 [info ] [MainThread]:   remote: None
+[0m06:54:59.312221 [info ] [MainThread]:   plugins: None
+[0m06:54:59.312301 [info ] [MainThread]:   disable_transactions: False
+[0m06:54:59.312609 [info ] [MainThread]: Registered adapter: duckdb=1.9.1
+[0m06:54:59.345256 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m06:54:59.392484 [debug] [MainThread]: Using duckdb connection "debug"
+[0m06:54:59.392707 [debug] [MainThread]: On debug: select 1 as id
+[0m06:54:59.392833 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:55:01.309348 [debug] [MainThread]: SQL status: OK in 1.916 seconds
+[0m06:55:01.310034 [debug] [MainThread]: On debug: Close
+[0m06:55:01.310311 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m06:55:01.310653 [info ] [MainThread]: [32mAll checks passed![0m
+[0m06:55:01.316944 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 2.2093365, "process_in_blocks": "0", "process_kernel_time": 0.292516, "process_mem_max_rss": "239009792", "process_out_blocks": "0", "process_user_time": 1.038408}
+[0m06:55:01.317281 [debug] [MainThread]: Command `dbt debug` succeeded at 06:55:01.317200 after 2.21 seconds
+[0m06:55:01.317538 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m06:55:01.317795 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104d8b410>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1053c51f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104b70c80>]}
+[0m06:55:01.318093 [debug] [MainThread]: Flushing usage events
+[0m06:55:01.644387 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m06:55:04.679905 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1153af560>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1145d7e00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1154140b0>]}
+
+
+============================== 06:55:04.682169 | c769a75e-99c8-47a5-ade2-422ea6d4f4ca ==============================
+[0m06:55:04.682169 [info ] [MainThread]: Running with dbt=1.9.2
+[0m06:55:04.682439 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'dbt/logs', 'version_check': 'True', 'profiles_dir': 'dbt/', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt debug --profiles-dir dbt/ --project-dir dbt/', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m06:55:04.685913 [info ] [MainThread]: dbt version: 1.9.2
+[0m06:55:04.686037 [info ] [MainThread]: python version: 3.12.7
+[0m06:55:04.686131 [info ] [MainThread]: python path: /opt/anaconda3/bin/python
+[0m06:55:04.686217 [info ] [MainThread]: os info: macOS-26.3.1-arm64-arm-64bit
+[0m06:55:04.727495 [info ] [MainThread]: Using profiles dir at dbt/
+[0m06:55:04.727712 [info ] [MainThread]: Using profiles.yml file at dbt/profiles.yml
+[0m06:55:04.727818 [info ] [MainThread]: Using dbt_project.yml file at dbt/dbt_project.yml
+[0m06:55:04.728341 [info ] [MainThread]: adapter type: duckdb
+[0m06:55:04.728449 [info ] [MainThread]: adapter version: 1.9.1
+[0m06:55:04.769515 [info ] [MainThread]: Configuration:
+[0m06:55:04.769758 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m06:55:04.769865 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m06:55:04.769959 [info ] [MainThread]: Required dependencies:
+[0m06:55:04.770127 [debug] [MainThread]: Executing "git --help"
+[0m06:55:04.779027 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m06:55:04.779371 [debug] [MainThread]: STDERR: "b''"
+[0m06:55:04.779489 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m06:55:04.779597 [info ] [MainThread]: Connection:
+[0m06:55:04.779711 [info ] [MainThread]:   database: memory
+[0m06:55:04.779810 [info ] [MainThread]:   schema: main
+[0m06:55:04.779908 [info ] [MainThread]:   path: :memory:
+[0m06:55:04.780006 [info ] [MainThread]:   config_options: None
+[0m06:55:04.780097 [info ] [MainThread]:   extensions: ['iceberg', 'httpfs']
+[0m06:55:04.780198 [info ] [MainThread]:   settings: {'s3_endpoint': 'localhost:9000', 's3_access_key_id': 'minioadmin', 's3_secret_access_key': 'minioadmin', 's3_use_ssl': 'false', 's3_url_style': 'path'}
+[0m06:55:04.780292 [info ] [MainThread]:   external_root: .
+[0m06:55:04.780377 [info ] [MainThread]:   use_credential_provider: None
+[0m06:55:04.780467 [info ] [MainThread]:   attach: None
+[0m06:55:04.780553 [info ] [MainThread]:   filesystems: None
+[0m06:55:04.780640 [info ] [MainThread]:   remote: None
+[0m06:55:04.780721 [info ] [MainThread]:   plugins: None
+[0m06:55:04.780810 [info ] [MainThread]:   disable_transactions: False
+[0m06:55:04.781050 [info ] [MainThread]: Registered adapter: duckdb=1.9.1
+[0m06:55:04.808762 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m06:55:04.826871 [debug] [MainThread]: Using duckdb connection "debug"
+[0m06:55:04.827046 [debug] [MainThread]: On debug: select 1 as id
+[0m06:55:04.827144 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:55:04.856442 [debug] [MainThread]: SQL status: OK in 0.029 seconds
+[0m06:55:04.857009 [debug] [MainThread]: On debug: Close
+[0m06:55:04.857167 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m06:55:04.857302 [info ] [MainThread]: [32mAll checks passed![0m
+[0m06:55:04.858572 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 0.20837379, "process_in_blocks": "0", "process_kernel_time": 0.16897, "process_mem_max_rss": "151158784", "process_out_blocks": "0", "process_user_time": 0.795563}
+[0m06:55:04.858785 [debug] [MainThread]: Command `dbt debug` succeeded at 06:55:04.858747 after 0.21 seconds
+[0m06:55:04.858924 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m06:55:04.859072 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x114b13980>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1157f6f30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x114171460>]}
+[0m06:55:04.859259 [debug] [MainThread]: Flushing usage events
+[0m06:55:05.155604 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m06:55:08.857943 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11109db80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111fdfbf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111fdfef0>]}
+
+
+============================== 06:55:08.859815 | bb04f6f2-c871-4a4f-a57b-a8d5d85d1b53 ==============================
+[0m06:55:08.859815 [info ] [MainThread]: Running with dbt=1.9.2
+[0m06:55:08.860102 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'dbt/', 'debug': 'False', 'warn_error': 'None', 'log_path': 'dbt/logs', 'version_check': 'True', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt deps --profiles-dir dbt/ --project-dir dbt/', 'send_anonymous_usage_stats': 'True'}
+[0m06:55:08.988793 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'bb04f6f2-c871-4a4f-a57b-a8d5d85d1b53', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111f94710>]}
+[0m06:55:08.995465 [debug] [MainThread]: Set downloads directory='/var/folders/fw/wxs379ds1pg67n_gfrwl9xjw0000gn/T/dbt-downloads-nbcbiyub'
+[0m06:55:08.995721 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m06:55:09.418649 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m06:55:09.420020 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m06:55:09.509840 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m06:55:09.517293 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/calogica/dbt_expectations.json
+[0m06:55:09.598571 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/calogica/dbt_expectations.json 200
+[0m06:55:09.600183 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `calogica/dbt_expectations` package is deprecated in favor of
+`metaplane/dbt_expectations`. Please update your `packages.yml` configuration to
+use `metaplane/dbt_expectations` instead.
+[0m06:55:09.600693 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'bb04f6f2-c871-4a4f-a57b-a8d5d85d1b53', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111c35520>]}
+[0m06:55:09.603378 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/calogica/dbt_date.json
+[0m06:55:09.691449 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/calogica/dbt_date.json 200
+[0m06:55:09.702761 [info ] [MainThread]: Updating lock file in file path: /Users/sriram/Projects/SynthFraudDetectAI/dbt/package-lock.yml
+[0m06:55:09.706339 [debug] [MainThread]: Set downloads directory='/var/folders/fw/wxs379ds1pg67n_gfrwl9xjw0000gn/T/dbt-downloads-93f4peu4'
+[0m06:55:09.710913 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m06:55:10.126150 [info ] [MainThread]: Installed from version 1.3.3
+[0m06:55:10.126400 [info ] [MainThread]: Up to date!
+[0m06:55:10.126584 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'bb04f6f2-c871-4a4f-a57b-a8d5d85d1b53', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112183ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112156390>]}
+[0m06:55:10.126774 [info ] [MainThread]: Installing calogica/dbt_expectations
+[0m06:55:10.926609 [info ] [MainThread]: Installed from version 0.10.4
+[0m06:55:10.926830 [info ] [MainThread]: Up to date!
+[0m06:55:10.926983 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'bb04f6f2-c871-4a4f-a57b-a8d5d85d1b53', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112157e60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112156390>]}
+[0m06:55:10.927161 [info ] [MainThread]: Installing calogica/dbt_date
+[0m06:55:11.205790 [info ] [MainThread]: Installed from version 0.10.1
+[0m06:55:11.206174 [info ] [MainThread]: Up to date!
+[0m06:55:11.206426 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'bb04f6f2-c871-4a4f-a57b-a8d5d85d1b53', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1121e9970>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1121ea360>]}
+[0m06:55:11.209296 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 2.384186, "process_in_blocks": "0", "process_kernel_time": 0.236689, "process_mem_max_rss": "129810432", "process_out_blocks": "0", "process_user_time": 0.742434}
+[0m06:55:11.209667 [debug] [MainThread]: Command `dbt deps` succeeded at 06:55:11.209591 after 2.38 seconds
+[0m06:55:11.209922 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111b0a1e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1120143e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112014260>]}
+[0m06:55:11.210129 [debug] [MainThread]: Flushing usage events
+[0m06:55:11.466906 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m06:56:27.878080 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104d64f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104de88f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104de84d0>]}
+
+
+============================== 06:56:27.880984 | b87f8f3f-84b8-4b46-ae3a-ff23d9000b14 ==============================
+[0m06:56:27.880984 [info ] [MainThread]: Running with dbt=1.9.2
+[0m06:56:27.881312 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'dbt/', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': 'dbt/logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt run --profiles-dir dbt/ --project-dir dbt/ --select staging', 'send_anonymous_usage_stats': 'True'}
+[0m06:56:28.059730 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10490a180>]}
+[0m06:56:28.083713 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104b067e0>]}
+[0m06:56:28.085097 [info ] [MainThread]: Registered adapter: duckdb=1.9.1
+[0m06:56:28.131916 [debug] [MainThread]: checksum: 12b12750b70de726cfd89136b8e24afc3f3e77597a97bff40ab7e5f9b39d5e18, vars: {}, profile: , target: , version: 1.9.2
+[0m06:56:28.132755 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m06:56:28.132970 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104d86210>]}
+[0m06:56:28.897956 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056d1820>]}
+[0m06:56:28.962912 [debug] [MainThread]: Wrote artifact WritableManifest to dbt/target/manifest.json
+[0m06:56:28.964100 [debug] [MainThread]: Wrote artifact SemanticManifest to dbt/target/semantic_manifest.json
+[0m06:56:28.976449 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105724da0>]}
+[0m06:56:28.976689 [info ] [MainThread]: Found 5 models, 95 data tests, 2 sources, 809 macros
+[0m06:56:28.976813 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105541c70>]}
+[0m06:56:28.977651 [info ] [MainThread]: 
+[0m06:56:28.977770 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m06:56:28.977859 [info ] [MainThread]: 
+[0m06:56:28.978022 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m06:56:28.979608 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_memory'
+[0m06:56:29.004771 [debug] [ThreadPool]: Using duckdb connection "list_memory"
+[0m06:56:29.004984 [debug] [ThreadPool]: On list_memory: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"memory"'
+    
+  
+  
+[0m06:56:29.005095 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:56:29.065940 [debug] [ThreadPool]: SQL status: OK in 0.061 seconds
+[0m06:56:29.067026 [debug] [ThreadPool]: On list_memory: Close
+[0m06:56:29.067336 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_memory, now create_memory_main_staging)
+[0m06:56:29.067739 [debug] [ThreadPool]: Creating schema "database: "memory"
+schema: "main_staging"
+"
+[0m06:56:29.070444 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:56:29.070579 [debug] [ThreadPool]: On create_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "create_memory_main_staging"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='memory'
+        and type='sqlite'
+    
+  
+[0m06:56:29.070675 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:56:29.071729 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:56:29.072269 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:56:29.072391 [debug] [ThreadPool]: On create_memory_main_staging: BEGIN
+[0m06:56:29.072550 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:56:29.072643 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:56:29.072735 [debug] [ThreadPool]: On create_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "create_memory_main_staging"} */
+
+    
+    
+        create schema if not exists "memory"."main_staging"
+    
+[0m06:56:29.073268 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:56:29.073572 [debug] [ThreadPool]: On create_memory_main_staging: COMMIT
+[0m06:56:29.073683 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:56:29.073775 [debug] [ThreadPool]: On create_memory_main_staging: COMMIT
+[0m06:56:29.073932 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:56:29.074038 [debug] [ThreadPool]: On create_memory_main_staging: Close
+[0m06:56:29.074615 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_memory_main_staging, now list_memory_main_staging)
+[0m06:56:29.074794 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_memory_main_marts'
+[0m06:56:29.076906 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_staging"
+[0m06:56:29.077653 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_marts"
+[0m06:56:29.077755 [debug] [ThreadPool]: On list_memory_main_staging: BEGIN
+[0m06:56:29.077883 [debug] [ThreadPool]: On list_memory_main_marts: BEGIN
+[0m06:56:29.078015 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:56:29.078104 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:56:29.078592 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:56:29.078715 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_staging"
+[0m06:56:29.078844 [debug] [ThreadPool]: On list_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory_main_staging"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main_staging'
+    and lower(table_catalog) = 'memory'
+  
+[0m06:56:29.079162 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:56:29.079261 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_marts"
+[0m06:56:29.079363 [debug] [ThreadPool]: On list_memory_main_marts: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory_main_marts"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main_marts'
+    and lower(table_catalog) = 'memory'
+  
+[0m06:56:29.081482 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m06:56:29.081619 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m06:56:29.082107 [debug] [ThreadPool]: On list_memory_main_staging: ROLLBACK
+[0m06:56:29.082511 [debug] [ThreadPool]: On list_memory_main_marts: ROLLBACK
+[0m06:56:29.083292 [debug] [ThreadPool]: Failed to rollback 'list_memory_main_marts'
+[0m06:56:29.083607 [debug] [ThreadPool]: Failed to rollback 'list_memory_main_staging'
+[0m06:56:29.083715 [debug] [ThreadPool]: On list_memory_main_marts: Close
+[0m06:56:29.083827 [debug] [ThreadPool]: On list_memory_main_staging: Close
+[0m06:56:29.084123 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10576a270>]}
+[0m06:56:29.084303 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:56:29.084403 [debug] [MainThread]: On master: BEGIN
+[0m06:56:29.084482 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:56:29.084882 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:56:29.084990 [debug] [MainThread]: On master: COMMIT
+[0m06:56:29.085092 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:56:29.085176 [debug] [MainThread]: On master: COMMIT
+[0m06:56:29.085330 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:56:29.085493 [debug] [MainThread]: On master: Close
+[0m06:56:29.086090 [debug] [Thread-1 (]: Began running node model.sentinel_analytics.stg_fraud_alerts
+[0m06:56:29.086230 [debug] [Thread-2 (]: Began running node model.sentinel_analytics.stg_transactions
+[0m06:56:29.086422 [info ] [Thread-1 (]: 1 of 2 START sql table model main_staging.stg_fraud_alerts ..................... [RUN]
+[0m06:56:29.086614 [info ] [Thread-2 (]: 2 of 2 START sql table model main_staging.stg_transactions ..................... [RUN]
+[0m06:56:29.086770 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_memory_main_staging, now model.sentinel_analytics.stg_fraud_alerts)
+[0m06:56:29.086992 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_memory_main_marts, now model.sentinel_analytics.stg_transactions)
+[0m06:56:29.087104 [debug] [Thread-1 (]: Began compiling node model.sentinel_analytics.stg_fraud_alerts
+[0m06:56:29.087218 [debug] [Thread-2 (]: Began compiling node model.sentinel_analytics.stg_transactions
+[0m06:56:29.090518 [debug] [Thread-1 (]: Writing injected SQL for node "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:56:29.091807 [debug] [Thread-2 (]: Writing injected SQL for node "model.sentinel_analytics.stg_transactions"
+[0m06:56:29.092296 [debug] [Thread-2 (]: Began executing node model.sentinel_analytics.stg_transactions
+[0m06:56:29.092434 [debug] [Thread-1 (]: Began executing node model.sentinel_analytics.stg_fraud_alerts
+[0m06:56:29.104063 [debug] [Thread-2 (]: Writing runtime sql for node "model.sentinel_analytics.stg_transactions"
+[0m06:56:29.105427 [debug] [Thread-1 (]: Writing runtime sql for node "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:56:29.106013 [debug] [Thread-2 (]: Using duckdb connection "model.sentinel_analytics.stg_transactions"
+[0m06:56:29.106184 [debug] [Thread-1 (]: Using duckdb connection "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:56:29.106327 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: BEGIN
+[0m06:56:29.106468 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: BEGIN
+[0m06:56:29.106600 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m06:56:29.106721 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m06:56:29.107295 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m06:56:29.107421 [debug] [Thread-2 (]: Using duckdb connection "model.sentinel_analytics.stg_transactions"
+[0m06:56:29.107605 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_transactions"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_transactions__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.transactions (Iceberg, HOUR-partitioned on event_time)
+  This model is the entry point for all downstream staging and mart queries.
+  It is materialised as a table so the iceberg_scan cost is paid once per
+  dbt run rather than on every downstream query.
+*/
+
+with source as (
+
+    select *
+    from "memory"."sentinel_raw"."transactions"
+    where transaction_id is not null
+
+),
+
+renamed as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)          as sequence_number,
+        cast(generator_seed  as bigint)          as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)               as amount_usd,
+        upper(trim(currency))                    as currency,
+
+        -- Timestamps — event_time arrives as epoch ms (bigint); cast to TIMESTAMPTZ
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                 as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                 as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)       as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)                as latitude,
+        cast(longitude as double)                as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)               as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)                as is_fraud
+
+    from source
+
+)
+
+select * from renamed
+    );
+  
+  
+[0m06:56:29.108452 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m06:56:29.108589 [debug] [Thread-1 (]: Using duckdb connection "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:56:29.108744 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_fraud_alerts"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_fraud_alerts__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.fraud_alerts (Iceberg, DAY-partitioned on event_time)
+  Each source row may carry multiple fraud flags (e.g. a transaction that
+  triggers both VELOCITY_BREACH and LOCATION_JUMP in the same window).
+  Unnesting to one-row-per-flag makes aggregations in mart models trivial.
+*/
+
+with source as (
+
+    select *
+    from "memory"."sentinel_raw"."fraud_alerts"
+    where transaction_id is not null
+      and is_fraud = true
+
+),
+
+unnested as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)         as sequence_number,
+        cast(generator_seed  as bigint)         as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)              as amount_usd,
+        upper(trim(currency))                   as currency,
+
+        -- Timestamps
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)      as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)               as latitude,
+        cast(longitude as double)               as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)              as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)               as is_fraud,
+
+        -- Exploded: one row per flag
+        unnest(fraud_flags)                     as fraud_flag
+
+    from source
+
+)
+
+select * from unnested
+    );
+  
+  
+[0m06:56:29.112009 [debug] [Thread-1 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_fraud_alerts"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_fraud_alerts__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.fraud_alerts (Iceberg, DAY-partitioned on event_time)
+  Each source row may carry multiple fraud flags (e.g. a transaction that
+  triggers both VELOCITY_BREACH and LOCATION_JUMP in the same window).
+  Unnesting to one-row-per-flag makes aggregations in mart models trivial.
+*/
+
+with source as (
+
+    select *
+    from "memory"."sentinel_raw"."fraud_alerts"
+    where transaction_id is not null
+      and is_fraud = true
+
+),
+
+unnested as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)         as sequence_number,
+        cast(generator_seed  as bigint)         as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)              as amount_usd,
+        upper(trim(currency))                   as currency,
+
+        -- Timestamps
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)      as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)               as latitude,
+        cast(longitude as double)               as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)              as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)               as is_fraud,
+
+        -- Exploded: one row per flag
+        unnest(fraud_flags)                     as fraud_flag
+
+    from source
+
+)
+
+select * from unnested
+    );
+  
+  
+[0m06:56:29.112226 [debug] [Thread-2 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_transactions"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_transactions__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.transactions (Iceberg, HOUR-partitioned on event_time)
+  This model is the entry point for all downstream staging and mart queries.
+  It is materialised as a table so the iceberg_scan cost is paid once per
+  dbt run rather than on every downstream query.
+*/
+
+with source as (
+
+    select *
+    from "memory"."sentinel_raw"."transactions"
+    where transaction_id is not null
+
+),
+
+renamed as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)          as sequence_number,
+        cast(generator_seed  as bigint)          as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)               as amount_usd,
+        upper(trim(currency))                    as currency,
+
+        -- Timestamps — event_time arrives as epoch ms (bigint); cast to TIMESTAMPTZ
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                 as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                 as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)       as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)                as latitude,
+        cast(longitude as double)                as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)               as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)                as is_fraud
+
+    from source
+
+)
+
+select * from renamed
+    );
+  
+  
+[0m06:56:29.112362 [debug] [Thread-1 (]: DuckDB adapter: Rolling back transaction.
+[0m06:56:29.112478 [debug] [Thread-2 (]: DuckDB adapter: Rolling back transaction.
+[0m06:56:29.112643 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: ROLLBACK
+[0m06:56:29.112824 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: ROLLBACK
+[0m06:56:29.117530 [debug] [Thread-2 (]: Failed to rollback 'model.sentinel_analytics.stg_transactions'
+[0m06:56:29.117686 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: Close
+[0m06:56:29.118142 [debug] [Thread-1 (]: Failed to rollback 'model.sentinel_analytics.stg_fraud_alerts'
+[0m06:56:29.118635 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: Close
+[0m06:56:29.119416 [debug] [Thread-2 (]: Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Catalog Error: Table with name "sentinel_raw.transactions" does not exist because schema "sentinel_raw" does not exist.
+  
+  LINE 23:     from "memory"."sentinel_raw"."transactions"
+                    ^
+[0m06:56:29.120350 [debug] [Thread-1 (]: Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  Catalog Error: Table with name "sentinel_raw.fraud_alerts" does not exist because schema "sentinel_raw" does not exist.
+  
+  LINE 23:     from "memory"."sentinel_raw"."fraud_alerts"
+                    ^
+[0m06:56:29.120740 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10579c9b0>]}
+[0m06:56:29.120849 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'b87f8f3f-84b8-4b46-ae3a-ff23d9000b14', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1059c7ec0>]}
+[0m06:56:29.121072 [error] [Thread-2 (]: 2 of 2 ERROR creating sql table model main_staging.stg_transactions ............ [[31mERROR[0m in 0.03s]
+[0m06:56:29.121321 [error] [Thread-1 (]: 1 of 2 ERROR creating sql table model main_staging.stg_fraud_alerts ............ [[31mERROR[0m in 0.03s]
+[0m06:56:29.121545 [debug] [Thread-2 (]: Finished running node model.sentinel_analytics.stg_transactions
+[0m06:56:29.121727 [debug] [Thread-1 (]: Finished running node model.sentinel_analytics.stg_fraud_alerts
+[0m06:56:29.121898 [debug] [Thread-7 (]: Marking all children of 'model.sentinel_analytics.stg_transactions' to be skipped because of status 'error'.  Reason: Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Catalog Error: Table with name "sentinel_raw.transactions" does not exist because schema "sentinel_raw" does not exist.
+  
+  LINE 23:     from "memory"."sentinel_raw"."transactions"
+                    ^.
+[0m06:56:29.122373 [debug] [Thread-7 (]: Marking all children of 'model.sentinel_analytics.stg_fraud_alerts' to be skipped because of status 'error'.  Reason: Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  Catalog Error: Table with name "sentinel_raw.fraud_alerts" does not exist because schema "sentinel_raw" does not exist.
+  
+  LINE 23:     from "memory"."sentinel_raw"."fraud_alerts"
+                    ^.
+[0m06:56:29.122923 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:56:29.123036 [debug] [MainThread]: On master: BEGIN
+[0m06:56:29.123142 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:56:29.123635 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:56:29.123747 [debug] [MainThread]: On master: COMMIT
+[0m06:56:29.123850 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:56:29.123949 [debug] [MainThread]: On master: COMMIT
+[0m06:56:29.124086 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:56:29.124187 [debug] [MainThread]: On master: Close
+[0m06:56:29.124329 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:56:29.124416 [debug] [MainThread]: Connection 'model.sentinel_analytics.stg_fraud_alerts' was properly closed.
+[0m06:56:29.124500 [debug] [MainThread]: Connection 'model.sentinel_analytics.stg_transactions' was properly closed.
+[0m06:56:29.124614 [info ] [MainThread]: 
+[0m06:56:29.124724 [info ] [MainThread]: Finished running 2 table models in 0 hours 0 minutes and 0.15 seconds (0.15s).
+[0m06:56:29.124984 [debug] [MainThread]: Command end result
+[0m06:56:29.143001 [debug] [MainThread]: Wrote artifact WritableManifest to dbt/target/manifest.json
+[0m06:56:29.143753 [debug] [MainThread]: Wrote artifact SemanticManifest to dbt/target/semantic_manifest.json
+[0m06:56:29.145671 [debug] [MainThread]: Wrote artifact RunExecutionResult to dbt/target/run_results.json
+[0m06:56:29.145769 [info ] [MainThread]: 
+[0m06:56:29.145895 [info ] [MainThread]: [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[0m06:56:29.145999 [info ] [MainThread]: 
+[0m06:56:29.146127 [error] [MainThread]:   Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Catalog Error: Table with name "sentinel_raw.transactions" does not exist because schema "sentinel_raw" does not exist.
+  
+  LINE 23:     from "memory"."sentinel_raw"."transactions"
+                    ^
+[0m06:56:29.146227 [info ] [MainThread]: 
+[0m06:56:29.146339 [error] [MainThread]:   Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  Catalog Error: Table with name "sentinel_raw.fraud_alerts" does not exist because schema "sentinel_raw" does not exist.
+  
+  LINE 23:     from "memory"."sentinel_raw"."fraud_alerts"
+                    ^
+[0m06:56:29.146427 [info ] [MainThread]: 
+[0m06:56:29.146520 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=2 SKIP=0 TOTAL=2
+[0m06:56:29.148273 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 1.3059565, "process_in_blocks": "0", "process_kernel_time": 0.353485, "process_mem_max_rss": "169377792", "process_out_blocks": "0", "process_user_time": 1.708951}
+[0m06:56:29.148485 [debug] [MainThread]: Command `dbt run` failed at 06:56:29.148447 after 1.31 seconds
+[0m06:56:29.148643 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104d64f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1056ac890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104833ec0>]}
+[0m06:56:29.148775 [debug] [MainThread]: Flushing usage events
+[0m06:56:29.475321 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m06:57:57.102411 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ab3f140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b0147d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b0143b0>]}
+
+
+============================== 06:57:57.104561 | cd3a6357-07d2-4066-8e19-452e26c51ae6 ==============================
+[0m06:57:57.104561 [info ] [MainThread]: Running with dbt=1.9.2
+[0m06:57:57.104844 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': 'dbt/', 'log_path': 'dbt/logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt run --profiles-dir dbt/ --project-dir dbt/ --select staging', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m06:57:57.201880 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b071040>]}
+[0m06:57:57.225431 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b086a80>]}
+[0m06:57:57.227352 [info ] [MainThread]: Registered adapter: duckdb=1.9.1
+[0m06:57:57.267358 [debug] [MainThread]: checksum: 12b12750b70de726cfd89136b8e24afc3f3e77597a97bff40ab7e5f9b39d5e18, vars: {}, profile: , target: , version: 1.9.2
+[0m06:57:57.375991 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m06:57:57.376728 [debug] [MainThread]: Partial parsing: updated file: sentinel_analytics://models/sources.yml
+[0m06:57:57.710238 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10af94980>]}
+[0m06:57:57.747745 [debug] [MainThread]: Wrote artifact WritableManifest to dbt/target/manifest.json
+[0m06:57:57.748894 [debug] [MainThread]: Wrote artifact SemanticManifest to dbt/target/semantic_manifest.json
+[0m06:57:57.760059 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bac17c0>]}
+[0m06:57:57.760289 [info ] [MainThread]: Found 5 models, 95 data tests, 2 sources, 809 macros
+[0m06:57:57.760431 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10baffb60>]}
+[0m06:57:57.761256 [info ] [MainThread]: 
+[0m06:57:57.761376 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m06:57:57.761465 [info ] [MainThread]: 
+[0m06:57:57.761628 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m06:57:57.763164 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_memory'
+[0m06:57:57.787808 [debug] [ThreadPool]: Using duckdb connection "list_memory"
+[0m06:57:57.787991 [debug] [ThreadPool]: On list_memory: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"memory"'
+    
+  
+  
+[0m06:57:57.788100 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:57:57.847252 [debug] [ThreadPool]: SQL status: OK in 0.059 seconds
+[0m06:57:57.847914 [debug] [ThreadPool]: On list_memory: Close
+[0m06:57:57.848267 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_memory, now create_memory_main_staging)
+[0m06:57:57.848541 [debug] [ThreadPool]: Creating schema "database: "memory"
+schema: "main_staging"
+"
+[0m06:57:57.851574 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:57:57.851693 [debug] [ThreadPool]: On create_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "create_memory_main_staging"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='memory'
+        and type='sqlite'
+    
+  
+[0m06:57:57.851789 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:57:57.852566 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:57:57.853069 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:57:57.853160 [debug] [ThreadPool]: On create_memory_main_staging: BEGIN
+[0m06:57:57.853298 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:57:57.853392 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:57:57.853494 [debug] [ThreadPool]: On create_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "create_memory_main_staging"} */
+
+    
+    
+        create schema if not exists "memory"."main_staging"
+    
+[0m06:57:57.853690 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:57:57.853995 [debug] [ThreadPool]: On create_memory_main_staging: COMMIT
+[0m06:57:57.854108 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:57:57.854190 [debug] [ThreadPool]: On create_memory_main_staging: COMMIT
+[0m06:57:57.854328 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:57:57.854437 [debug] [ThreadPool]: On create_memory_main_staging: Close
+[0m06:57:57.855073 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_memory_main_staging, now list_memory_main_marts)
+[0m06:57:57.857472 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_marts"
+[0m06:57:57.857719 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_memory_main_staging'
+[0m06:57:57.857880 [debug] [ThreadPool]: On list_memory_main_marts: BEGIN
+[0m06:57:57.858801 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_staging"
+[0m06:57:57.858934 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:57:57.859048 [debug] [ThreadPool]: On list_memory_main_staging: BEGIN
+[0m06:57:57.859231 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:57:57.859658 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:57:57.859805 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_marts"
+[0m06:57:57.859940 [debug] [ThreadPool]: On list_memory_main_marts: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory_main_marts"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main_marts'
+    and lower(table_catalog) = 'memory'
+  
+[0m06:57:57.860269 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:57:57.860369 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_staging"
+[0m06:57:57.860471 [debug] [ThreadPool]: On list_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory_main_staging"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main_staging'
+    and lower(table_catalog) = 'memory'
+  
+[0m06:57:57.862219 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m06:57:57.862369 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m06:57:57.862868 [debug] [ThreadPool]: On list_memory_main_marts: ROLLBACK
+[0m06:57:57.863233 [debug] [ThreadPool]: On list_memory_main_staging: ROLLBACK
+[0m06:57:57.864133 [debug] [ThreadPool]: Failed to rollback 'list_memory_main_staging'
+[0m06:57:57.864270 [debug] [ThreadPool]: On list_memory_main_staging: Close
+[0m06:57:57.864608 [debug] [ThreadPool]: Failed to rollback 'list_memory_main_marts'
+[0m06:57:57.864767 [debug] [ThreadPool]: On list_memory_main_marts: Close
+[0m06:57:57.865083 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10730b770>]}
+[0m06:57:57.865288 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:57:57.865396 [debug] [MainThread]: On master: BEGIN
+[0m06:57:57.865491 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:57:57.865950 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:57:57.866053 [debug] [MainThread]: On master: COMMIT
+[0m06:57:57.866151 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:57:57.866243 [debug] [MainThread]: On master: COMMIT
+[0m06:57:57.866384 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:57:57.866480 [debug] [MainThread]: On master: Close
+[0m06:57:57.867105 [debug] [Thread-1 (]: Began running node model.sentinel_analytics.stg_fraud_alerts
+[0m06:57:57.867250 [debug] [Thread-2 (]: Began running node model.sentinel_analytics.stg_transactions
+[0m06:57:57.867444 [info ] [Thread-1 (]: 1 of 2 START sql table model main_staging.stg_fraud_alerts ..................... [RUN]
+[0m06:57:57.867635 [info ] [Thread-2 (]: 2 of 2 START sql table model main_staging.stg_transactions ..................... [RUN]
+[0m06:57:57.867794 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_memory_main_marts, now model.sentinel_analytics.stg_fraud_alerts)
+[0m06:57:57.867934 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_memory_main_staging, now model.sentinel_analytics.stg_transactions)
+[0m06:57:57.868056 [debug] [Thread-1 (]: Began compiling node model.sentinel_analytics.stg_fraud_alerts
+[0m06:57:57.868168 [debug] [Thread-2 (]: Began compiling node model.sentinel_analytics.stg_transactions
+[0m06:57:57.871223 [debug] [Thread-1 (]: Writing injected SQL for node "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:57:57.872708 [debug] [Thread-2 (]: Writing injected SQL for node "model.sentinel_analytics.stg_transactions"
+[0m06:57:57.873170 [debug] [Thread-2 (]: Began executing node model.sentinel_analytics.stg_transactions
+[0m06:57:57.873332 [debug] [Thread-1 (]: Began executing node model.sentinel_analytics.stg_fraud_alerts
+[0m06:57:57.884294 [debug] [Thread-2 (]: Writing runtime sql for node "model.sentinel_analytics.stg_transactions"
+[0m06:57:57.886116 [debug] [Thread-1 (]: Writing runtime sql for node "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:57:57.886477 [debug] [Thread-2 (]: Using duckdb connection "model.sentinel_analytics.stg_transactions"
+[0m06:57:57.886623 [debug] [Thread-1 (]: Using duckdb connection "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:57:57.886745 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: BEGIN
+[0m06:57:57.886862 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: BEGIN
+[0m06:57:57.886990 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m06:57:57.887093 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m06:57:57.887655 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m06:57:57.887774 [debug] [Thread-2 (]: Using duckdb connection "model.sentinel_analytics.stg_transactions"
+[0m06:57:57.887924 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_transactions"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_transactions__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.transactions (Iceberg, HOUR-partitioned on event_time)
+  This model is the entry point for all downstream staging and mart queries.
+  It is materialised as a table so the iceberg_scan cost is paid once per
+  dbt run rather than on every downstream query.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+    where transaction_id is not null
+
+),
+
+renamed as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)          as sequence_number,
+        cast(generator_seed  as bigint)          as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)               as amount_usd,
+        upper(trim(currency))                    as currency,
+
+        -- Timestamps — event_time arrives as epoch ms (bigint); cast to TIMESTAMPTZ
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                 as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                 as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)       as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)                as latitude,
+        cast(longitude as double)                as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)               as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)                as is_fraud
+
+    from source
+
+)
+
+select * from renamed
+    );
+  
+  
+[0m06:57:57.888907 [debug] [Thread-1 (]: SQL status: OK in 0.002 seconds
+[0m06:57:57.889044 [debug] [Thread-1 (]: Using duckdb connection "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:57:57.889196 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_fraud_alerts"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_fraud_alerts__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.fraud_alerts (Iceberg, DAY-partitioned on event_time)
+  Each source row may carry multiple fraud flags (e.g. a transaction that
+  triggers both VELOCITY_BREACH and LOCATION_JUMP in the same window).
+  Unnesting to one-row-per-flag makes aggregations in mart models trivial.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+    where transaction_id is not null
+      and is_fraud = true
+
+),
+
+unnested as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)         as sequence_number,
+        cast(generator_seed  as bigint)         as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)              as amount_usd,
+        upper(trim(currency))                   as currency,
+
+        -- Timestamps
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)      as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)               as latitude,
+        cast(longitude as double)               as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)              as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)               as is_fraud,
+
+        -- Exploded: one row per flag
+        unnest(fraud_flags)                     as fraud_flag
+
+    from source
+
+)
+
+select * from unnested
+    );
+  
+  
+[0m06:57:58.408694 [debug] [Thread-2 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_transactions"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_transactions__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.transactions (Iceberg, HOUR-partitioned on event_time)
+  This model is the entry point for all downstream staging and mart queries.
+  It is materialised as a table so the iceberg_scan cost is paid once per
+  dbt run rather than on every downstream query.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+    where transaction_id is not null
+
+),
+
+renamed as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)          as sequence_number,
+        cast(generator_seed  as bigint)          as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)               as amount_usd,
+        upper(trim(currency))                    as currency,
+
+        -- Timestamps — event_time arrives as epoch ms (bigint); cast to TIMESTAMPTZ
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                 as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                 as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)       as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)                as latitude,
+        cast(longitude as double)                as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)               as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)                as is_fraud
+
+    from source
+
+)
+
+select * from renamed
+    );
+  
+  
+[0m06:57:58.409503 [debug] [Thread-1 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_fraud_alerts"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_fraud_alerts__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.fraud_alerts (Iceberg, DAY-partitioned on event_time)
+  Each source row may carry multiple fraud flags (e.g. a transaction that
+  triggers both VELOCITY_BREACH and LOCATION_JUMP in the same window).
+  Unnesting to one-row-per-flag makes aggregations in mart models trivial.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+    where transaction_id is not null
+      and is_fraud = true
+
+),
+
+unnested as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)         as sequence_number,
+        cast(generator_seed  as bigint)         as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)              as amount_usd,
+        upper(trim(currency))                   as currency,
+
+        -- Timestamps
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)      as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)               as latitude,
+        cast(longitude as double)               as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)              as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)               as is_fraud,
+
+        -- Exploded: one row per flag
+        unnest(fraud_flags)                     as fraud_flag
+
+    from source
+
+)
+
+select * from unnested
+    );
+  
+  
+[0m06:57:58.409870 [debug] [Thread-2 (]: DuckDB adapter: Rolling back transaction.
+[0m06:57:58.410151 [debug] [Thread-1 (]: DuckDB adapter: Rolling back transaction.
+[0m06:57:58.410490 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: ROLLBACK
+[0m06:57:58.410745 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: ROLLBACK
+[0m06:57:58.416973 [debug] [Thread-2 (]: Failed to rollback 'model.sentinel_analytics.stg_transactions'
+[0m06:57:58.417262 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: Close
+[0m06:57:58.418068 [debug] [Thread-1 (]: Failed to rollback 'model.sentinel_analytics.stg_fraud_alerts'
+[0m06:57:58.418378 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: Close
+[0m06:57:58.420557 [debug] [Thread-1 (]: Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  Failed to read iceberg table. No version was provided and no version-hint could be found, globbing the filesystem to locate the latest version is disabled by default as this is considered unsafe and could result in reading uncommitted data. To enable this use 'SET unsafe_enable_version_guessing = true;'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+                    ^
+[0m06:57:58.421305 [debug] [Thread-2 (]: Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Failed to read iceberg table. No version was provided and no version-hint could be found, globbing the filesystem to locate the latest version is disabled by default as this is considered unsafe and could result in reading uncommitted data. To enable this use 'SET unsafe_enable_version_guessing = true;'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+                    ^
+[0m06:57:58.422894 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109e987d0>]}
+[0m06:57:58.423178 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'cd3a6357-07d2-4066-8e19-452e26c51ae6', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c28e780>]}
+[0m06:57:58.423612 [error] [Thread-1 (]: 1 of 2 ERROR creating sql table model main_staging.stg_fraud_alerts ............ [[31mERROR[0m in 0.55s]
+[0m06:57:58.424003 [error] [Thread-2 (]: 2 of 2 ERROR creating sql table model main_staging.stg_transactions ............ [[31mERROR[0m in 0.55s]
+[0m06:57:58.424324 [debug] [Thread-1 (]: Finished running node model.sentinel_analytics.stg_fraud_alerts
+[0m06:57:58.424613 [debug] [Thread-2 (]: Finished running node model.sentinel_analytics.stg_transactions
+[0m06:57:58.424902 [debug] [Thread-7 (]: Marking all children of 'model.sentinel_analytics.stg_fraud_alerts' to be skipped because of status 'error'.  Reason: Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  Failed to read iceberg table. No version was provided and no version-hint could be found, globbing the filesystem to locate the latest version is disabled by default as this is considered unsafe and could result in reading uncommitted data. To enable this use 'SET unsafe_enable_version_guessing = true;'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+                    ^.
+[0m06:57:58.425635 [debug] [Thread-7 (]: Marking all children of 'model.sentinel_analytics.stg_transactions' to be skipped because of status 'error'.  Reason: Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Failed to read iceberg table. No version was provided and no version-hint could be found, globbing the filesystem to locate the latest version is disabled by default as this is considered unsafe and could result in reading uncommitted data. To enable this use 'SET unsafe_enable_version_guessing = true;'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+                    ^.
+[0m06:57:58.426420 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:57:58.426620 [debug] [MainThread]: On master: BEGIN
+[0m06:57:58.426775 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:57:58.427641 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m06:57:58.427821 [debug] [MainThread]: On master: COMMIT
+[0m06:57:58.427972 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:57:58.428109 [debug] [MainThread]: On master: COMMIT
+[0m06:57:58.428319 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:57:58.428449 [debug] [MainThread]: On master: Close
+[0m06:57:58.428645 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:57:58.428778 [debug] [MainThread]: Connection 'model.sentinel_analytics.stg_fraud_alerts' was properly closed.
+[0m06:57:58.428908 [debug] [MainThread]: Connection 'model.sentinel_analytics.stg_transactions' was properly closed.
+[0m06:57:58.429069 [info ] [MainThread]: 
+[0m06:57:58.429225 [info ] [MainThread]: Finished running 2 table models in 0 hours 0 minutes and 0.67 seconds (0.67s).
+[0m06:57:58.429611 [debug] [MainThread]: Command end result
+[0m06:57:58.454788 [debug] [MainThread]: Wrote artifact WritableManifest to dbt/target/manifest.json
+[0m06:57:58.455855 [debug] [MainThread]: Wrote artifact SemanticManifest to dbt/target/semantic_manifest.json
+[0m06:57:58.458499 [debug] [MainThread]: Wrote artifact RunExecutionResult to dbt/target/run_results.json
+[0m06:57:58.458676 [info ] [MainThread]: 
+[0m06:57:58.458832 [info ] [MainThread]: [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[0m06:57:58.458955 [info ] [MainThread]: 
+[0m06:57:58.459099 [error] [MainThread]:   Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  Failed to read iceberg table. No version was provided and no version-hint could be found, globbing the filesystem to locate the latest version is disabled by default as this is considered unsafe and could result in reading uncommitted data. To enable this use 'SET unsafe_enable_version_guessing = true;'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+                    ^
+[0m06:57:58.459214 [info ] [MainThread]: 
+[0m06:57:58.459340 [error] [MainThread]:   Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  Failed to read iceberg table. No version was provided and no version-hint could be found, globbing the filesystem to locate the latest version is disabled by default as this is considered unsafe and could result in reading uncommitted data. To enable this use 'SET unsafe_enable_version_guessing = true;'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+                    ^
+[0m06:57:58.459451 [info ] [MainThread]: 
+[0m06:57:58.459566 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=2 SKIP=0 TOTAL=2
+[0m06:57:58.461380 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 1.3901764, "process_in_blocks": "0", "process_kernel_time": 0.30725, "process_mem_max_rss": "176046080", "process_out_blocks": "0", "process_user_time": 1.333653}
+[0m06:57:58.461577 [debug] [MainThread]: Command `dbt run` failed at 06:57:58.461538 after 1.39 seconds
+[0m06:57:58.461735 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10adee090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b903d40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c0bdb20>]}
+[0m06:57:58.461874 [debug] [MainThread]: Flushing usage events
+[0m06:57:58.905925 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m06:58:13.769024 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x117eb56d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x117edbf20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x117f18320>]}
+
+
+============================== 06:58:13.770797 | 73a43122-1583-4eca-968b-5fa582a21bd4 ==============================
+[0m06:58:13.770797 [info ] [MainThread]: Running with dbt=1.9.2
+[0m06:58:13.771036 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': 'dbt/', 'log_path': 'dbt/logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt run --profiles-dir dbt/ --project-dir dbt/ --select staging', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m06:58:13.872967 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115606750>]}
+[0m06:58:13.897387 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1152fedb0>]}
+[0m06:58:13.898294 [info ] [MainThread]: Registered adapter: duckdb=1.9.1
+[0m06:58:13.937564 [debug] [MainThread]: checksum: 12b12750b70de726cfd89136b8e24afc3f3e77597a97bff40ab7e5f9b39d5e18, vars: {}, profile: , target: , version: 1.9.2
+[0m06:58:14.003469 [info ] [MainThread]: Unable to do partial parsing because profile has changed
+[0m06:58:14.003754 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x117735b80>]}
+[0m06:58:14.787845 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120f27290>]}
+[0m06:58:14.826295 [debug] [MainThread]: Wrote artifact WritableManifest to dbt/target/manifest.json
+[0m06:58:14.827244 [debug] [MainThread]: Wrote artifact SemanticManifest to dbt/target/semantic_manifest.json
+[0m06:58:14.834580 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12084b6e0>]}
+[0m06:58:14.834803 [info ] [MainThread]: Found 5 models, 95 data tests, 2 sources, 809 macros
+[0m06:58:14.834929 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1208a1f40>]}
+[0m06:58:14.835744 [info ] [MainThread]: 
+[0m06:58:14.835862 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m06:58:14.835949 [info ] [MainThread]: 
+[0m06:58:14.836112 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m06:58:14.837724 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_memory'
+[0m06:58:14.860381 [debug] [ThreadPool]: Using duckdb connection "list_memory"
+[0m06:58:14.860566 [debug] [ThreadPool]: On list_memory: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"memory"'
+    
+  
+  
+[0m06:58:14.860668 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:58:14.888684 [debug] [ThreadPool]: SQL status: OK in 0.028 seconds
+[0m06:58:14.889336 [debug] [ThreadPool]: On list_memory: Close
+[0m06:58:14.889620 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_memory, now create_memory_main_staging)
+[0m06:58:14.889785 [debug] [ThreadPool]: Creating schema "database: "memory"
+schema: "main_staging"
+"
+[0m06:58:14.892355 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:58:14.892470 [debug] [ThreadPool]: On create_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "create_memory_main_staging"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='memory'
+        and type='sqlite'
+    
+  
+[0m06:58:14.892560 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:58:14.893315 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:58:14.893888 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:58:14.894002 [debug] [ThreadPool]: On create_memory_main_staging: BEGIN
+[0m06:58:14.894153 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:58:14.894248 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:58:14.894336 [debug] [ThreadPool]: On create_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "create_memory_main_staging"} */
+
+    
+    
+        create schema if not exists "memory"."main_staging"
+    
+[0m06:58:14.894491 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:58:14.894746 [debug] [ThreadPool]: On create_memory_main_staging: COMMIT
+[0m06:58:14.894843 [debug] [ThreadPool]: Using duckdb connection "create_memory_main_staging"
+[0m06:58:14.894926 [debug] [ThreadPool]: On create_memory_main_staging: COMMIT
+[0m06:58:14.895062 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m06:58:14.895157 [debug] [ThreadPool]: On create_memory_main_staging: Close
+[0m06:58:14.895718 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_memory_main_staging, now list_memory_main_marts)
+[0m06:58:14.895940 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_memory_main_staging'
+[0m06:58:14.898169 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_marts"
+[0m06:58:14.899083 [debug] [ThreadPool]: On list_memory_main_marts: BEGIN
+[0m06:58:14.899179 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:58:14.898964 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_staging"
+[0m06:58:14.899383 [debug] [ThreadPool]: On list_memory_main_staging: BEGIN
+[0m06:58:14.899536 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:58:14.900017 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:58:14.900139 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_marts"
+[0m06:58:14.900272 [debug] [ThreadPool]: On list_memory_main_marts: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory_main_marts"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main_marts'
+    and lower(table_catalog) = 'memory'
+  
+[0m06:58:14.900678 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:58:14.900781 [debug] [ThreadPool]: Using duckdb connection "list_memory_main_staging"
+[0m06:58:14.900876 [debug] [ThreadPool]: On list_memory_main_staging: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "connection_name": "list_memory_main_staging"} */
+select
+      'memory' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main_staging'
+    and lower(table_catalog) = 'memory'
+  
+[0m06:58:14.901640 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:58:14.901744 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m06:58:14.902194 [debug] [ThreadPool]: On list_memory_main_staging: ROLLBACK
+[0m06:58:14.902564 [debug] [ThreadPool]: On list_memory_main_marts: ROLLBACK
+[0m06:58:14.903037 [debug] [ThreadPool]: Failed to rollback 'list_memory_main_marts'
+[0m06:58:14.903366 [debug] [ThreadPool]: Failed to rollback 'list_memory_main_staging'
+[0m06:58:14.903462 [debug] [ThreadPool]: On list_memory_main_marts: Close
+[0m06:58:14.903562 [debug] [ThreadPool]: On list_memory_main_staging: Close
+[0m06:58:14.903887 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x115677740>]}
+[0m06:58:14.904065 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:58:14.904152 [debug] [MainThread]: On master: BEGIN
+[0m06:58:14.904232 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:58:14.904716 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:58:14.904824 [debug] [MainThread]: On master: COMMIT
+[0m06:58:14.904913 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:58:14.904995 [debug] [MainThread]: On master: COMMIT
+[0m06:58:14.905146 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:58:14.905284 [debug] [MainThread]: On master: Close
+[0m06:58:14.906129 [debug] [Thread-1 (]: Began running node model.sentinel_analytics.stg_fraud_alerts
+[0m06:58:14.906304 [debug] [Thread-2 (]: Began running node model.sentinel_analytics.stg_transactions
+[0m06:58:14.906508 [info ] [Thread-1 (]: 1 of 2 START sql table model main_staging.stg_fraud_alerts ..................... [RUN]
+[0m06:58:14.906702 [info ] [Thread-2 (]: 2 of 2 START sql table model main_staging.stg_transactions ..................... [RUN]
+[0m06:58:14.906872 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_memory_main_marts, now model.sentinel_analytics.stg_fraud_alerts)
+[0m06:58:14.907097 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_memory_main_staging, now model.sentinel_analytics.stg_transactions)
+[0m06:58:14.907232 [debug] [Thread-1 (]: Began compiling node model.sentinel_analytics.stg_fraud_alerts
+[0m06:58:14.907345 [debug] [Thread-2 (]: Began compiling node model.sentinel_analytics.stg_transactions
+[0m06:58:14.910315 [debug] [Thread-1 (]: Writing injected SQL for node "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:58:14.911965 [debug] [Thread-2 (]: Writing injected SQL for node "model.sentinel_analytics.stg_transactions"
+[0m06:58:14.912315 [debug] [Thread-1 (]: Began executing node model.sentinel_analytics.stg_fraud_alerts
+[0m06:58:14.912442 [debug] [Thread-2 (]: Began executing node model.sentinel_analytics.stg_transactions
+[0m06:58:14.923924 [debug] [Thread-1 (]: Writing runtime sql for node "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:58:14.925160 [debug] [Thread-2 (]: Writing runtime sql for node "model.sentinel_analytics.stg_transactions"
+[0m06:58:14.925491 [debug] [Thread-1 (]: Using duckdb connection "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:58:14.925659 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: BEGIN
+[0m06:58:14.925803 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m06:58:14.925950 [debug] [Thread-2 (]: Using duckdb connection "model.sentinel_analytics.stg_transactions"
+[0m06:58:14.926183 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: BEGIN
+[0m06:58:14.926316 [debug] [Thread-2 (]: Opening a new connection, currently in state closed
+[0m06:58:14.926852 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m06:58:14.927016 [debug] [Thread-1 (]: Using duckdb connection "model.sentinel_analytics.stg_fraud_alerts"
+[0m06:58:14.927181 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_fraud_alerts"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_fraud_alerts__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.fraud_alerts (Iceberg, DAY-partitioned on event_time)
+  Each source row may carry multiple fraud flags (e.g. a transaction that
+  triggers both VELOCITY_BREACH and LOCATION_JUMP in the same window).
+  Unnesting to one-row-per-flag makes aggregations in mart models trivial.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+    where transaction_id is not null
+      and is_fraud = true
+
+),
+
+unnested as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)         as sequence_number,
+        cast(generator_seed  as bigint)         as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)              as amount_usd,
+        upper(trim(currency))                   as currency,
+
+        -- Timestamps
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)      as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)               as latitude,
+        cast(longitude as double)               as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)              as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)               as is_fraud,
+
+        -- Exploded: one row per flag
+        unnest(fraud_flags)                     as fraud_flag
+
+    from source
+
+)
+
+select * from unnested
+    );
+  
+  
+[0m06:58:14.927646 [debug] [Thread-2 (]: SQL status: OK in 0.001 seconds
+[0m06:58:14.927822 [debug] [Thread-2 (]: Using duckdb connection "model.sentinel_analytics.stg_transactions"
+[0m06:58:14.927984 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_transactions"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_transactions__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.transactions (Iceberg, HOUR-partitioned on event_time)
+  This model is the entry point for all downstream staging and mart queries.
+  It is materialised as a table so the iceberg_scan cost is paid once per
+  dbt run rather than on every downstream query.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+    where transaction_id is not null
+
+),
+
+renamed as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)          as sequence_number,
+        cast(generator_seed  as bigint)          as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)               as amount_usd,
+        upper(trim(currency))                    as currency,
+
+        -- Timestamps — event_time arrives as epoch ms (bigint); cast to TIMESTAMPTZ
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                 as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                 as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)       as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)                as latitude,
+        cast(longitude as double)                as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)               as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)                as is_fraud
+
+    from source
+
+)
+
+select * from renamed
+    );
+  
+  
+[0m06:58:15.951031 [debug] [Thread-1 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_fraud_alerts"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_fraud_alerts__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.fraud_alerts (Iceberg, DAY-partitioned on event_time)
+  Each source row may carry multiple fraud flags (e.g. a transaction that
+  triggers both VELOCITY_BREACH and LOCATION_JUMP in the same window).
+  Unnesting to one-row-per-flag makes aggregations in mart models trivial.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+    where transaction_id is not null
+      and is_fraud = true
+
+),
+
+unnested as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)         as sequence_number,
+        cast(generator_seed  as bigint)         as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)              as amount_usd,
+        upper(trim(currency))                   as currency,
+
+        -- Timestamps
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)      as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)               as latitude,
+        cast(longitude as double)               as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)              as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)               as is_fraud,
+
+        -- Exploded: one row per flag
+        unnest(fraud_flags)                     as fraud_flag
+
+    from source
+
+)
+
+select * from unnested
+    );
+  
+  
+[0m06:58:15.952003 [debug] [Thread-2 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.2", "profile_name": "sentinel", "target_name": "dev", "node_id": "model.sentinel_analytics.stg_transactions"} */
+
+  
+    
+    
+
+    create  table
+      "memory"."main_staging"."stg_transactions__dbt_tmp"
+  
+    as (
+      
+
+/*
+  Source: sentinel_raw.transactions (Iceberg, HOUR-partitioned on event_time)
+  This model is the entry point for all downstream staging and mart queries.
+  It is materialised as a table so the iceberg_scan cost is paid once per
+  dbt run rather than on every downstream query.
+*/
+
+with source as (
+
+    select *
+    from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+    where transaction_id is not null
+
+),
+
+renamed as (
+
+    select
+        -- Identity
+        transaction_id,
+        user_id,
+        merchant_id,
+        cast(sequence_number as bigint)          as sequence_number,
+        cast(generator_seed  as bigint)          as generator_seed,
+
+        -- Transaction payload
+        cast(amount_usd as double)               as amount_usd,
+        upper(trim(currency))                    as currency,
+
+        -- Timestamps — event_time arrives as epoch ms (bigint); cast to TIMESTAMPTZ
+        to_timestamp(cast(event_time as bigint) / 1000.0)
+                                                 as event_time,
+        to_timestamp(cast(flink_processing_timestamp as bigint) / 1000.0)
+                                                 as flink_processing_timestamp,
+        cast(processing_time_ms as bigint)       as processing_time_ms,
+
+        -- Network and device
+        ip_address,
+        cast(latitude  as double)                as latitude,
+        cast(longitude as double)                as longitude,
+        device_fingerprint,
+        session_id,
+
+        -- Fraud enrichment
+        cast(risk_score as double)               as risk_score,
+        fraud_flags,
+        cast(is_fraud as boolean)                as is_fraud
+
+    from source
+
+)
+
+select * from renamed
+    );
+  
+  
+[0m06:58:15.952445 [debug] [Thread-1 (]: DuckDB adapter: Rolling back transaction.
+[0m06:58:15.952787 [debug] [Thread-2 (]: DuckDB adapter: Rolling back transaction.
+[0m06:58:15.953267 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: ROLLBACK
+[0m06:58:15.953649 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: ROLLBACK
+[0m06:58:15.960134 [debug] [Thread-2 (]: Failed to rollback 'model.sentinel_analytics.stg_transactions'
+[0m06:58:15.961221 [debug] [Thread-1 (]: Failed to rollback 'model.sentinel_analytics.stg_fraud_alerts'
+[0m06:58:15.961451 [debug] [Thread-2 (]: On model.sentinel_analytics.stg_transactions: Close
+[0m06:58:15.961669 [debug] [Thread-1 (]: On model.sentinel_analytics.stg_fraud_alerts: Close
+[0m06:58:15.964001 [debug] [Thread-2 (]: Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  IO Error: Could not connect to server error for HTTP GET to 'http://localhost:9000/sentinel-dev/?encoding-type=url&list-type=2&prefix=iceberg%2Ftransactions%2F%2Fmetadata%2Fv'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+                    ^
+[0m06:58:15.965109 [debug] [Thread-1 (]: Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  IO Error: Could not connect to server error for HTTP GET to 'http://localhost:9000/sentinel-dev/?encoding-type=url&list-type=2&prefix=iceberg%2Ffraud_alerts%2F%2Fmetadata%2Fv'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+                    ^
+[0m06:58:15.966532 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x116ed49e0>]}
+[0m06:58:15.966789 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '73a43122-1583-4eca-968b-5fa582a21bd4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x12107c3e0>]}
+[0m06:58:15.967218 [error] [Thread-2 (]: 2 of 2 ERROR creating sql table model main_staging.stg_transactions ............ [[31mERROR[0m in 1.06s]
+[0m06:58:15.967715 [error] [Thread-1 (]: 1 of 2 ERROR creating sql table model main_staging.stg_fraud_alerts ............ [[31mERROR[0m in 1.06s]
+[0m06:58:15.968140 [debug] [Thread-2 (]: Finished running node model.sentinel_analytics.stg_transactions
+[0m06:58:15.968455 [debug] [Thread-1 (]: Finished running node model.sentinel_analytics.stg_fraud_alerts
+[0m06:58:15.968816 [debug] [Thread-7 (]: Marking all children of 'model.sentinel_analytics.stg_transactions' to be skipped because of status 'error'.  Reason: Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  IO Error: Could not connect to server error for HTTP GET to 'http://localhost:9000/sentinel-dev/?encoding-type=url&list-type=2&prefix=iceberg%2Ftransactions%2F%2Fmetadata%2Fv'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+                    ^.
+[0m06:58:15.969631 [debug] [Thread-7 (]: Marking all children of 'model.sentinel_analytics.stg_fraud_alerts' to be skipped because of status 'error'.  Reason: Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  IO Error: Could not connect to server error for HTTP GET to 'http://localhost:9000/sentinel-dev/?encoding-type=url&list-type=2&prefix=iceberg%2Ffraud_alerts%2F%2Fmetadata%2Fv'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+                    ^.
+[0m06:58:15.970495 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:58:15.970697 [debug] [MainThread]: On master: BEGIN
+[0m06:58:15.970867 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:58:15.971693 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m06:58:15.971876 [debug] [MainThread]: On master: COMMIT
+[0m06:58:15.972040 [debug] [MainThread]: Using duckdb connection "master"
+[0m06:58:15.972229 [debug] [MainThread]: On master: COMMIT
+[0m06:58:15.972647 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m06:58:15.972826 [debug] [MainThread]: On master: Close
+[0m06:58:15.973072 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:58:15.973228 [debug] [MainThread]: Connection 'model.sentinel_analytics.stg_fraud_alerts' was properly closed.
+[0m06:58:15.973369 [debug] [MainThread]: Connection 'model.sentinel_analytics.stg_transactions' was properly closed.
+[0m06:58:15.973580 [info ] [MainThread]: 
+[0m06:58:15.973756 [info ] [MainThread]: Finished running 2 table models in 0 hours 0 minutes and 1.14 seconds (1.14s).
+[0m06:58:15.974222 [debug] [MainThread]: Command end result
+[0m06:58:16.000872 [debug] [MainThread]: Wrote artifact WritableManifest to dbt/target/manifest.json
+[0m06:58:16.001858 [debug] [MainThread]: Wrote artifact SemanticManifest to dbt/target/semantic_manifest.json
+[0m06:58:16.004334 [debug] [MainThread]: Wrote artifact RunExecutionResult to dbt/target/run_results.json
+[0m06:58:16.004466 [info ] [MainThread]: 
+[0m06:58:16.004609 [info ] [MainThread]: [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[0m06:58:16.004724 [info ] [MainThread]: 
+[0m06:58:16.004867 [error] [MainThread]:   Runtime Error in model stg_transactions (models/staging/stg_transactions.sql)
+  IO Error: Could not connect to server error for HTTP GET to 'http://localhost:9000/sentinel-dev/?encoding-type=url&list-type=2&prefix=iceberg%2Ftransactions%2F%2Fmetadata%2Fv'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/transactions/')
+                    ^
+[0m06:58:16.004975 [info ] [MainThread]: 
+[0m06:58:16.005102 [error] [MainThread]:   Runtime Error in model stg_fraud_alerts (models/staging/stg_fraud_alerts.sql)
+  IO Error: Could not connect to server error for HTTP GET to 'http://localhost:9000/sentinel-dev/?encoding-type=url&list-type=2&prefix=iceberg%2Ffraud_alerts%2F%2Fmetadata%2Fv'
+  
+  LINE 23:     from iceberg_scan('s3://sentinel-dev/iceberg/fraud_alerts/')
+                    ^
+[0m06:58:16.005207 [info ] [MainThread]: 
+[0m06:58:16.005418 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=2 SKIP=0 TOTAL=2
+[0m06:58:16.007113 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.2679496, "process_in_blocks": "0", "process_kernel_time": 0.228818, "process_mem_max_rss": "175931392", "process_out_blocks": "0", "process_user_time": 1.756703}
+[0m06:58:16.007375 [debug] [MainThread]: Command `dbt run` failed at 06:58:16.007334 after 2.27 seconds
+[0m06:58:16.007552 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x117f18620>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x120912960>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11783a090>]}
+[0m06:58:16.007708 [debug] [MainThread]: Flushing usage events
+[0m06:58:16.287665 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m06:58:20.851157 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a398fb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b218650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b218230>]}
+
+
+============================== 06:58:20.852928 | c9c82244-b376-4449-bf27-67733811272c ==============================
+[0m06:58:20.852928 [info ] [MainThread]: Running with dbt=1.9.2
+[0m06:58:20.853205 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'dbt/logs', 'profiles_dir': 'dbt/', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt deps --profiles-dir dbt/ --project-dir dbt/', 'introspect': 'True', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m06:58:20.915731 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c9c82244-b376-4449-bf27-67733811272c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107502630>]}
+[0m06:58:20.924025 [debug] [MainThread]: Set downloads directory='/var/folders/fw/wxs379ds1pg67n_gfrwl9xjw0000gn/T/dbt-downloads-2v5q5xk1'
+[0m06:58:20.924338 [debug] [MainThread]: Making package index registry request: GET https://hub.getdbt.com/api/v1/index.json
+[0m06:58:21.138116 [debug] [MainThread]: Response from registry index: GET https://hub.getdbt.com/api/v1/index.json 200
+[0m06:58:21.139017 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json
+[0m06:58:21.266167 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/dbt-labs/dbt_utils.json 200
+[0m06:58:21.274386 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/metaplane/dbt_expectations.json
+[0m06:58:21.382969 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/metaplane/dbt_expectations.json 200
+[0m06:58:21.387391 [debug] [MainThread]: Making package registry request: GET https://hub.getdbt.com/api/v1/godatadriven/dbt_date.json
+[0m06:58:21.509423 [debug] [MainThread]: Response from registry: GET https://hub.getdbt.com/api/v1/godatadriven/dbt_date.json 200
+[0m06:58:21.521206 [info ] [MainThread]: Updating lock file in file path: /Users/sriram/Projects/SynthFraudDetectAI/dbt/package-lock.yml
+[0m06:58:21.553907 [debug] [MainThread]: Set downloads directory='/var/folders/fw/wxs379ds1pg67n_gfrwl9xjw0000gn/T/dbt-downloads-ixvmnwol'
+[0m06:58:21.557638 [info ] [MainThread]: Installing dbt-labs/dbt_utils
+[0m06:58:21.957755 [info ] [MainThread]: Installed from version 1.3.3
+[0m06:58:21.958020 [info ] [MainThread]: Up to date!
+[0m06:58:21.958203 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'c9c82244-b376-4449-bf27-67733811272c', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109f16c30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a107290>]}
+[0m06:58:21.958380 [info ] [MainThread]: Installing metaplane/dbt_expectations
+[0m06:58:22.734304 [info ] [MainThread]: Installed from version 0.10.10
+[0m06:58:22.734528 [info ] [MainThread]: Up to date!
+[0m06:58:22.734685 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'c9c82244-b376-4449-bf27-67733811272c', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b0dbfe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b2c9e20>]}
+[0m06:58:22.734849 [info ] [MainThread]: Installing godatadriven/dbt_date
+[0m06:58:23.160080 [info ] [MainThread]: Installed from version 0.15.0
+[0m06:58:23.160389 [info ] [MainThread]: Up to date!
+[0m06:58:23.160610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'package', 'label': 'c9c82244-b376-4449-bf27-67733811272c', 'property_': 'install', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b4578c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b454dd0>]}
+[0m06:58:23.162963 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 2.3427315, "process_in_blocks": "0", "process_kernel_time": 0.252275, "process_mem_max_rss": "129155072", "process_out_blocks": "0", "process_user_time": 0.742959}
+[0m06:58:23.163250 [debug] [MainThread]: Command `dbt deps` succeeded at 06:58:23.163193 after 2.34 seconds
+[0m06:58:23.163451 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b0dbec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107502630>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x109c062a0>]}
+[0m06:58:23.163623 [debug] [MainThread]: Flushing usage events
+[0m06:58:23.452605 [debug] [MainThread]: An error was encountered while trying to flush usage events

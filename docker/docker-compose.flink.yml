@@ -1,0 +1,127 @@
+services:
+  jobmanager:
+    build:
+      context: .
+      dockerfile: Dockerfile.flink-pyflink
+    image: sentinel-flink-pyflink:1.18
+    container_name: sentinel-jobmanager
+    hostname: jobmanager
+    restart: unless-stopped
+    networks:
+      - sentinel-net
+    ports:
+      - "8081:8081"   # Flink Web UI
+      - "6123:6123"   # RPC
+    command: jobmanager
+    environment:
+      FLINK_PROPERTIES: |
+        jobmanager.rpc.address: jobmanager
+    volumes:
+      - ./flink-conf/flink-conf.yaml:/opt/flink/conf/flink-conf.yaml:ro
+      - flink-checkpoints:/tmp/flink-checkpoints
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 2g
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8081/overview"]
+      interval: 15s
+      timeout: 10s
+      retries: 6
+      start_period: 30s
+
+  taskmanager:
+    build:
+      context: .
+      dockerfile: Dockerfile.flink-pyflink
+    image: sentinel-flink-pyflink:1.18
+    hostname: taskmanager
+    restart: unless-stopped
+    depends_on:
+      jobmanager:
+        condition: service_healthy
+    networks:
+      - sentinel-net
+    command: taskmanager
+    environment:
+      FLINK_PROPERTIES: |
+        jobmanager.rpc.address: jobmanager
+        taskmanager.numberOfTaskSlots: 4
+    volumes:
+      - ./flink-conf/flink-conf.yaml:/opt/flink/conf/flink-conf.yaml:ro
+      - flink-checkpoints:/tmp/flink-checkpoints
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 8g
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -sf http://jobmanager:8081/taskmanagers | grep -q '\"taskmanagers\":\\[{'",
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 8
+      start_period: 45s
+
+  # One-shot service: submits both PyFlink detection jobs after the cluster is ready.
+  # Uses the same sentinel-flink-pyflink:1.18 image as the cluster so the Python
+  # environment is identical — required for flink run --python.
+  # restart: on-failure retries on transient connection errors during warm-up.
+  flink-job-submitter:
+    build:
+      context: .
+      dockerfile: Dockerfile.flink-pyflink
+    image: sentinel-flink-pyflink:1.18
+    container_name: sentinel-flink-job-submitter
+    restart: on-failure
+    depends_on:
+      jobmanager:
+        condition: service_healthy
+      taskmanager:
+        condition: service_healthy
+    networks:
+      - sentinel-net
+    volumes:
+      - ../flink/jobs:/opt/sentinel/jobs:ro
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      ICEBERG_CATALOG_TYPE: hadoop
+      ICEBERG_WAREHOUSE: s3://sentinel-dev/iceberg/
+      S3_ENDPOINT: http://minio:9000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      AWS_REGION: us-east-1
+    entrypoint:
+      - /bin/bash
+      - -c
+      - |
+        set -e
+        JOBS=/opt/sentinel/jobs
+        PYFILES="$$JOBS/haversine.py,$$JOBS/state_schemas.py,$$JOBS/watermark_strategy.py,$$JOBS/iceberg_sink.py,$$JOBS/latency_sidecar.py"
+        echo '[submitter] Initialising Iceberg tables...'
+        python3 $$JOBS/init_iceberg_tables.py
+        echo '[submitter] Iceberg tables initialised.'
+        echo '[submitter] Submitting velocity_check...'
+        /opt/flink/bin/flink run -d \
+          -m jobmanager:8081 \
+          --python $$JOBS/velocity_check.py \
+          --pyFiles $$PYFILES
+        echo '[submitter] Submitting location_jump...'
+        /opt/flink/bin/flink run -d \
+          -m jobmanager:8081 \
+          --python $$JOBS/location_jump.py \
+          --pyFiles $$PYFILES
+        echo '[submitter] Submitting iceberg_writer...'
+        /opt/flink/bin/flink run -d \
+          -m jobmanager:8081 \
+          --python $$JOBS/iceberg_writer.py
+        echo '[submitter] All three jobs submitted successfully.'
+
+volumes:
+  flink-checkpoints:
+    name: sentinel-flink-checkpoints

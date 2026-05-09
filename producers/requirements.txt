@@ -1,0 +1,7 @@
+confluent-kafka==2.3.0
+faker==24.2.0
+kagglehub>=0.2.0
+jsonschema==4.21.1
+pydantic==2.6.4
+numpy>=1.26.0
+pandas>=2.2.0

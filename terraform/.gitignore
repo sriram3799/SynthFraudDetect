@@ -1,0 +1,17 @@
+# Never commit these — they contain AWS secrets and account-specific values
+*.tfvars
+*.tfvars.json
+
+# Terraform working directory
+.terraform/
+.terraform.lock.hcl
+
+# State files (managed remotely in S3)
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan.bin
+
+# Crash logs
+crash.log
+crash.*.log
